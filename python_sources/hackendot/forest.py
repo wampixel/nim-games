@@ -142,7 +142,7 @@ class forest:
 
     return result
 
-#NON ACCESSIBLE EN DEHORS
+#INUTILE EN DEHORS
 """
   fonction qui retourne la liste suffixe de la foret a partir d'un nœud donné
 """
