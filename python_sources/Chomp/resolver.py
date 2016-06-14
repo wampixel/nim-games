@@ -1,3 +1,6 @@
+from numpy import array
+from pylab import *
+
 """
 	notation :
 		+n : addition de Nim standard
@@ -20,6 +23,7 @@
 		f(P) = f(T1) +n f(T2) +n ... +n f(Tn)
 """
 
+#FONCTIONS
 """
 	fonction f d'une position p
 	Entrée :
@@ -35,36 +39,60 @@ def f(p) :
 			fp = fp ^ 1
 
 	return fp
+
 """
 	retourne le nombre de colonnes de la tablette t
 """
 def getColNb(t) :
-	return len(t)
+	(l, c) = t.shape
+	return c
+
 """
 	retourne le nombre de lignes de la tablette t
 """
 def getRowNb(t) :
-	return len(t[0])
+	(l, c) = t.shape
+	return l
 
 """
 	retourne la tablette découpée par rapport a une colonne.
 	dans cette fonction, la colonne attendu est naturelle, c'est a dire que l'on attend un entier compris entre 
-	1 et len(t) (pour faciliter l'appel a cette fonction pour l'utilisateur)
+	1 et getColNb(t) (pour faciliter l'appel a cette fonction pour l'utilisateur)
 	Entrée :
-		t une liste représentant une tablette
-		c une colonne de la tablette compris entre 1 et len(t)
+		t une matrice représentant une tablette
+		c une colonne de la tablette compris entre 1 et getColNb(t)
 """
 def chompC(t, c) :
-	if c - 1 < 0 :
+	if c - 1 < 0 or c > getColNb(t) :
 		raise(ValueError("erreur"))
-	res = [t[0:c - 1], t[c:]]
-	if [] in res:
-		res.remove([])
+	if c - 1 == 0 :
+		return [array(t[:, c:])]
+	if c == getColNb(t):
+		return [array(t[:, :c - 1])]
+	else :
+		return [array(t[:, :c-1]), array(t[:, c:])]
 
-	return res
+"""
+	retourne la tablette découpée par rapport a une ligne.
+	Dans cette fonction, la ligne attendue est naturelle, c'est a dire que l'on attend un entier compris entre
+	1 et getRowNb(t) (pour faciliter l'appel a cette fonction pour l'utilisateur)
+	Entrée :
+		t une matrice représentant une tablette
+		l une ligne de la tablette compris entre 1 et getRowNb(t)
+"""
+def chompL(t, l) :
+	if l - 1 < 0 or l > getRowNb(t) :
+		raise(ValueError("erreur"))
+	if l - 1 == 0 :
+		return [array(t[l:, :])]
+	if l == getRowNb(t):
+		return [array(t[:l - 1, :])]
+	else :
+		return [array(t[:l - 1, :]), array(t[l:, :])]
 
 
-#test :
+
+#TESTS
 """
 	on pose les positions de jeu suivantes :
 	
@@ -82,22 +110,24 @@ def chompC(t, c) :
 
 	quand le carré existe bien dans la tablette, la case de la matrice le représentant est a 1
 """
-#test pour la fonction chompC on prend une tablette quelconque (dans notre cas t1)
-t = [[1,1], [1,1],[1,1]]
-t = chompC(t, 2)
-# print("t =", t)
+#essai fonction f
+t1 = array([ones(3), ones(3)])
+t2 = array([ones(2), ones(2)])
 
-#matrice pour T1
-t1 = [[1,1], [1,1],[1,1]]
-#matrice pour T2
-t2 = [[1,1], [1,1]]
-
-#matrice pour P c'est a dire une matrice regroupant les deux matrices :
 p = [t1, t2]
-print("p  =", p)
 print("f(p) =", f(p))
 
-#matrice pour P2 c'est a dire une matrice regroupant les deux matrices :
 p2 = [t1, t1]
-print("p2  =", p2)
 print("f(p2) =", f(p2))
+
+#essai fonctions chompC et chompL
+t1 = array([ones(3), ones(3), ones(3)])
+ct1 = chompC(t1, 2)
+lt1 = chompL(t1, 2)
+print("chomped C t1 :\n", ct1)
+print("chomped L t1 :\n", lt1)
+
+#essai de suppression d'une colonne après la suppression d'une ligne
+lct1 = chompC(lt1[0], 2)
+lct1.append(lt1[1]) 
+print("chomped l lt1[0] :\n", lct1)
