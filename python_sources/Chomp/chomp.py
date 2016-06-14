@@ -63,6 +63,12 @@ def getWinningStrat(p) :
 
     #si on ne sait pas ou jouer pour pouvoir obtenir un coup gagnant selon la définition de f(p)
     return (0, 1, 1)
+
+"""
+    fonction principale du jeu
+    crée une situation aléatoire de jeu en appelant la fonction aleaGame() sans argument
+    Possibilité d'amelioration : proposer au joueur de donner les arguments a donner a la fonction aleaGame
+"""
 def main() :
     ag = aleaGame()
     for i in range(0, len(ag)) :
