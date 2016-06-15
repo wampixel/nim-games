@@ -67,28 +67,38 @@ def getWinningStrat(p) :
 """
     fonction principale du jeu
     crée une situation aléatoire de jeu en appelant la fonction aleaGame() sans argument
-    Possibilité d'amelioration : proposer au joueur de donner les arguments a donner a la fonction aleaGame
+    
+    Possibilité d’amélioration : proposer au joueur de donner les arguments a donner a la fonction aleaGame
 """
 def main() :
     ag = aleaGame()
-    for i in range(0, len(ag)) :
-        print(ag[i], "\n")
     joueur = 1
     while ag != [] :
+        for i in range(0, len(ag)) :
+            print(ag[i], "\n")
+        
         joueur = (joueur + 1) % 2
+        
         if joueur == 0 :
             (i, n, s) = getWinningStrat(ag)
-            ag.pop(i)
+            
             if s == 0 :
-                chompC(ag[i], n)
+                tmp = chompC(ag[i], n)
+                print("l'ia joue dans la matrice {} en enlevant la colonne {}".format(i + 1, n))
             else :
-                ag.extend(chompL(ag[i], n))
+                tmp = chompL(ag [i], n)
+                print("l'ia joue dans la matrice {} en enlevant la ligne {}".format(i + 1, n))
+
+            ag.pop(i)
+            if len(tmp) != 0 :
+                ag.extend(tmp)
+        
         else :
             #choix de la matrice ou l'on veut supprimer une ligne ou une colonne
             m = -1
             while m == -1:
                 try :
-                    m = int(input("choisissez une matrice (1 - {}) :".format(len(ag) + 1)))
+                    m = int(input("choisissez une matrice (1 - {}) :".format(len(ag))))
                     assert m >= 1 and m <= len(ag) + 1
                 except AssertionError :
                     print("matrice invalide recommencez :")
@@ -128,13 +138,21 @@ def main() :
                     n = -1
 
             #on peut supprimer la ligne ou la colonne choisie
-            ag.pop(m - 1)
             if s == 'h' :
-                ag.extend(chompL(ag[m - 1], n))
+                tmp = chompL(ag[m - 1], n)
+                print("vous jouez dans la matrice {} en enlevant la ligne {}".format(m - 1, n))
+
             else :
-                ag.extend(chompC(ag[m - 1], n))
+                tmp = chompC(ag[m - 1], n)
+                print("vous jouez dans la matrice {} en enlevant la colonne {}".format(m - 1, n))
 
-
+            ag.pop(m - 1)
+            if len(tmp) != 0 :
+                ag.extend(tmp)
+    if joueur == 0 :
+        print("l'ia a gagné...")
+    else :
+        print("vous avez gagné !")
 
 if __name__ == '__main__' :
     main()
