@@ -22,6 +22,33 @@ from pylab import *
     étendons cette fonction  a une position P d'un jeu a n tablettes noté T1, T2, ..., Tn :
         f(P) == 1 si sum(N de ti) est impair ou sum(M de ti) est impair pour tout i entre 1 et n
         f(P) == 0 sinon
+
+    En effet, dans une situation avec plusieurs tablettes noté Ti avec i un entier > 1, nous avons remarqué avec mes tuteurs de stage (Mr Dubernard et Mme Selmi) que
+    nous pouvions ramener notre ensemble de tablettes a une tablette unique noté T contenant l'ensemble des tablettes Ti sur la "diagonale".
+    Lorsque nous construisons T, nous faisons en sortes qu'il n'y ai pas de chevauchement ligne ou colonnes entre chaques Ti.
+    
+    Nous avons donc que notre matrice T a N' lignes et M' colonnes avec 
+        N' == sum(N de Ti)
+        M' == sum(M de Ti)
+
+    Exemple :
+    soit E un ensemble de tablettes tel que E = {T1, T2, T3} avec 
+        _ _ _    _ _    _
+       |_|_|_|  |_|_|  |_|
+       |_|_|_|  |_|_|  |_|
+         T1      T2    T3
+
+    on peut construire une tablette unique noté T contenant les tablettes T1, T2 et T3 comme étant
+     ____________ 
+    |          |_|
+    |       _ _|_|      T1 matrice de 2 lignes et 3 colonnes
+    |      |_|_| |    + T2 matrice de 2 lignes et 2 colonnes
+    |_ _ _ |_|_| |    + T3 matrice de 2 lignes et 1 colonne 
+    |_|_|_|      |      -----------------------------------
+    |_|_|_|______|      T  matrice de 6 lignes et 6 colonnes
+          T
+    nous remarquons que T contient bien T1, T2 et T3 et le nombre de lignes de T est égal a la somme du nombre de lignes de toutes les matrices 
+    contenu par T et le nombre de colonnes est bien la somme du nombre de colonnes de toutes les matrices contenu par T.
 """
 
 #FONCTIONS
@@ -134,4 +161,4 @@ if __name__ == '__main__' :
     #essai de suppression d'une colonne après la suppression d'une ligne
     lct1 = chompC(lt1[0], 2)
     lct1.append(lt1[1]) 
-    print("chomped l lt1[0] :\n", lct1)
+    print("chomped C lt1[0] :\n", lct1)
