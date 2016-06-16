@@ -39,13 +39,13 @@ from pylab import *
          T1      T2    T3
 
     on peut construire une tablette unique noté T contenant les tablettes T1, T2 et T3 comme étant
-     ____________ 
-    |          |_|
-    |       _ _|_|      T1 matrice de 2 lignes et 3 colonnes
-    |      |_|_| |    + T2 matrice de 2 lignes et 2 colonnes
-    |_ _ _ |_|_| |    + T3 matrice de 2 lignes et 1 colonne 
-    |_|_|_|      |      -----------------------------------
-    |_|_|_|______|      T  matrice de 6 lignes et 6 colonnes
+     _ _ _ _ _ _  
+    |         |_|
+    |      _ _|_|      T1 matrice de 2 lignes et 3 colonnes
+    |     |_|_| |    + T2 matrice de 2 lignes et 2 colonnes
+    |_ _ _|_|_| |    + T3 matrice de 2 lignes et 1 colonne 
+    |_|_|_|     |      -----------------------------------
+    |_|_|_|_ _ _|      T  matrice de 6 lignes et 6 colonnes
           T
     nous remarquons que T contient bien T1, T2 et T3 et le nombre de lignes de T est égal a la somme du nombre de lignes de toutes les matrices 
     contenu par T et le nombre de colonnes est bien la somme du nombre de colonnes de toutes les matrices contenu par T.
