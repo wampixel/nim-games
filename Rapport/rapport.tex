@@ -1,0 +1,56 @@
+\documentclass{univ-projet}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{hyperref}
+\usepackage{ulem}
+
+\logo{img/logo_univ.png}
+\author{Tristan Rodriguez}
+\relecteur{Tristan Rodriguez}
+\filiere{L3info}
+\projet{Stage 2015-2016}
+\projdesc{Stage au sein du département informatique du Madrillet}
+\title{Rapport de stage}
+\version{0.3}
+% \signataire{Carla Selmi}
+
+%historique du stage en page de garde
+\histentry{0.1} {du 9 au 14 mai} {recherche bibliographique (Théorème de Spague-Grundy et différents jeux de Nim) et étude de l'article de J. Ulehla}
+\histentry{0.1.1} {du 16 au 21 mai} {recherche technique sur le python et implantation d'un jeu de Nim ordinaire}
+\histentry{0.1.2} {du 23 au 27 mai} {étude du travail de Samuel Giraudo et Cédric Leroy sur les listes préfixes et suffixe dans les arbres}
+\histentry{0.2} {du 30 mai au 2 juin} {fin de l'implantation de la méthode Ulehla et une foret géré grâce aux listes préfixe et suffixe}
+\histentry{0.3} {du 6 au 10 juin} {début de la rédaction du rapport et mise en forme de la preuve sur les listes préfixe et suffixe}
+
+%Document principal
+\begin{document}
+  \maketitle
+  \tableofcontents
+  \clearpage
+  
+  \section{Introduction}
+  \label{sec:Introduction}
+  \input{text/intro.tex}
+  
+  \section{généralités}
+  \label{sec:généralités}
+  \input{text/gen.tex}
+    
+  \section{Travail effectué}
+  \label{sec:Travail effectué}
+  \input{text/travail.tex}
+
+  \section{Apports du stage}
+  \label{Apports du stage}
+  \input{text/apport.tex}
+  
+  \section{Conclusion}
+  \label{sec:conclusion}
+  \input{text/concl.tex}
+  % \nocite{*}
+  % \bibliographystyle{alpha}
+  % \bibliography{rapport}
+  % \addcontentsline{toc}{section}{Références}
+  
+\end{document}
