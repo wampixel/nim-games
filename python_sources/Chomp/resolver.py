@@ -58,6 +58,8 @@ from pylab import *
         p une liste de tablettes (avec au moins une tablette) trié par formes identiques
 """
 def f(p) :
+    if p[0].shape[0] == 0 or p[0].shape[1] == 0 :
+        return 0
     sumC = 0
     sumL = 0
     #pour toute tablette t de la position p, on calcul la fonction f de celle ci

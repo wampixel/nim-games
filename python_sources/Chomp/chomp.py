@@ -2,7 +2,25 @@ from resolver import *
 from random import randrange
 from pylab import ones
 import numpy
+"""
+    Jeu de Chomp revisité
+    Principe du jeu :
+        être le dernier a enlever un carré du jeu
 
+    Plateau de jeu :
+        un ensemble de tablettes représenté par des matrices 2D
+
+    Règles :
+        on choisi un carreau d'une tablette et on enlève soit la ligne soit la colonne sur laquelle est présente le carreau choisi
+
+    Nb :
+        sur un jeu a une tablette la méthode de résolution implanté dans le fichier resolver.py fonctionne, cependant lorsque l'on passe
+        a un jeu avec plus d'une tablette, la méthode de résolution de fonctionne plus.
+        Ceci vient du fait que le jeu ne prend pas en compte les tablettes se ressemblant, il cherche simplement a résoudre le jeu en considérant
+        l'ensemble des tablettes en une seule tablette contenant l'ensemble.
+"""
+
+#FONCTIONS
 """
     crée aléatoirement une situation de jeu.
     par défaut, crée un jeu de 3 tablettes avec 5 lignes et 5 colonnes maximum
@@ -11,7 +29,7 @@ import numpy
         maxL le nombre maximal de lignes voulu pour toutes les tablettes
         nbT le nombre de tablettes voulu pour le jeu
 """
-def aleaGame(maxC=5, maxL=5, nbT=3) :
+def aleaGame(maxC=5, maxL=5, nbT=1) :
     i = 0
     res = []
     while i < nbT :
@@ -63,7 +81,6 @@ def getWinningStrat(p) :
                 return (i, k, 1)
         print(i,j)
     #si on ne sait pas ou jouer pour pouvoir obtenir un coup gagnant selon la définition de f(p)
-    print("pas normal")
     return (0, 1, 1)
 
 """
@@ -73,13 +90,18 @@ def getWinningStrat(p) :
     Possibilité d’amélioration : proposer au joueur de donner les arguments a donner a la fonction aleaGame
 """
 def main() :
-    #ag = aleaGame()
+    ag = aleaGame()
     """
         situation de jeu problématique 
         le calcul ne prend pas en compte les composantes connexes identiques
         Peut être un tri de l'ensemble des tablettes par formes identiques?
     """
-    ag = [array([[1,1]]), array([[1]]), array([[1,1]]), array([[1]])]
+    #ag = [array([[1,1]]), array([[1]]), array([[1,1]]), array([[1]])]
+    """
+        dans cette situation a une tablette unique avec un nombre impair de colonnes et de lignes
+        le calcul du coup gagnant fonctionne
+    """
+    #ag = [array([[1,1,1]])]
     joueur = 1
     while ag != [] :
         for i in range(0, len(ag)) :
@@ -87,7 +109,7 @@ def main() :
         
         joueur = (joueur + 1) % 2
         
-        if joueur == 1 :
+        if joueur == 0 :
             (i, n, s) = getWinningStrat(ag)
             
             if s == 0 :
@@ -164,5 +186,6 @@ def main() :
     else :
         print("vous avez gagné !")
 
+#POINT DE DEPART DU JEU
 if __name__ == '__main__' :
     main()
