@@ -4,14 +4,14 @@ from pylab import ones
 import numpy
 
 """
-    crée aleatoirement une situation de jeu.
-    par defaut, crée un jeu de 3 tablettes avec 5 lignes et 5 colonnes maximum
+    crée aléatoirement une situation de jeu.
+    par défaut, crée un jeu de 3 tablettes avec 5 lignes et 5 colonnes maximum
     Entrée :
         maxC le nombre maximal de colonnes voulu pour toutes les tablettes
         maxL le nombre maximal de lignes voulu pour toutes les tablettes
         nbT le nombre de tablettes voulu pour le jeu
 """
-def aleaGame(maxC=5, maxL=5, nbT = 3) :
+def aleaGame(maxC=5, maxL=5, nbT=3) :
     i = 0
     res = []
     while i < nbT :
@@ -39,12 +39,13 @@ def aleaGame(maxC=5, maxL=5, nbT = 3) :
 """
 def getWinningStrat(p) :
     if f(p) == 0 :
+        print("par defaut")
         return (0, 1, 1)
 
     #on test pour toutes les matrices du jeu un coup jusqu’à trouver le coup gagnant
     for i in range(0, len(p)) :
         #on test pour toutes les colonnes de la matrice si le coup est gagnant
-        for j in range(1, getColNb(p[i])) :
+        for j in range(1, getColNb(p[i]) + 1) :
             tmp = p.copy()
             tmp.pop(i)
             tmp.extend(chompC(p[i], j))
@@ -53,15 +54,16 @@ def getWinningStrat(p) :
                 return (i, j, 0)
 
         #on test pour toutes les lignes de la matrice si le coup est gagnant
-        for j in range(1, getRowNb(p[i])) :
+        for k in range(1, getRowNb(p[i]) + 1) :
             tmp = p.copy()
             tmp.pop(i)
-            tmp.extend(chompL(p[i], j))
+            tmp.extend(chompL(p[i], k))
             #si jamais le coup j dans la matrice p[i] est gagnant, on sait ou jouer
             if f(tmp) == 0 :
-                return (i, j, 1)
-
+                return (i, k, 1)
+        print(i,j)
     #si on ne sait pas ou jouer pour pouvoir obtenir un coup gagnant selon la définition de f(p)
+    print("pas normal")
     return (0, 1, 1)
 
 """
@@ -71,7 +73,13 @@ def getWinningStrat(p) :
     Possibilité d’amélioration : proposer au joueur de donner les arguments a donner a la fonction aleaGame
 """
 def main() :
-    ag = aleaGame()
+    #ag = aleaGame()
+    """
+        situation de jeu problématique 
+        le calcul ne prend pas en compte les composantes connexes identiques
+        Peut être un tri de l'ensemble des tablettes par formes identiques?
+    """
+    ag = [array([[1,1]]), array([[1]]), array([[1,1]]), array([[1]])]
     joueur = 1
     while ag != [] :
         for i in range(0, len(ag)) :
@@ -79,18 +87,19 @@ def main() :
         
         joueur = (joueur + 1) % 2
         
-        if joueur == 0 :
+        if joueur == 1 :
             (i, n, s) = getWinningStrat(ag)
             
             if s == 0 :
                 tmp = chompC(ag[i], n)
                 print("l'ia joue dans la matrice {} en enlevant la colonne {}".format(i + 1, n))
             else :
-                tmp = chompL(ag [i], n)
+                tmp = chompL(ag[i], n)
                 print("l'ia joue dans la matrice {} en enlevant la ligne {}".format(i + 1, n))
 
             ag.pop(i)
-            if len(tmp) != 0 :
+            (l, c) = tmp[0].shape
+            if l != 0 and c != 0:
                 ag.extend(tmp)
         
         else :
@@ -140,14 +149,15 @@ def main() :
             #on peut supprimer la ligne ou la colonne choisie
             if s == 'h' :
                 tmp = chompL(ag[m - 1], n)
-                print("vous jouez dans la matrice {} en enlevant la ligne {}".format(m - 1, n))
+                print("vous jouez dans la matrice {} en enlevant la ligne {}".format(m, n))
 
             else :
                 tmp = chompC(ag[m - 1], n)
-                print("vous jouez dans la matrice {} en enlevant la colonne {}".format(m - 1, n))
+                print("vous jouez dans la matrice {} en enlevant la colonne {}".format(m, n))
 
             ag.pop(m - 1)
-            if len(tmp) != 0 :
+            (l, c) = tmp[0].shape
+            if l != 0 and c != 0:
                 ag.extend(tmp)
     if joueur == 0 :
         print("l'ia a gagné...")

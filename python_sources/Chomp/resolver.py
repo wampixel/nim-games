@@ -55,7 +55,7 @@ from pylab import *
 """
     fonction f d'une position p
     Entrée :
-        p une liste de tablettes (avec au moins une tablette)
+        p une liste de tablettes (avec au moins une tablette) trié par formes identiques
 """
 def f(p) :
     sumC = 0
@@ -94,7 +94,8 @@ def getRowNb(t) :
 """
 def chompC(t, c) :
     if c - 1 < 0 or c > getColNb(t) :
-        raise(ValueError("erreur"))
+        mess = "erreur valeur {} < 0 ou > nombre de colonnes de la matrice".format(c - 1)
+        raise(ValueError(mess))
     if c - 1 == 0 :
         return [array(t[:, c:])]
     if c == getColNb(t):
@@ -112,7 +113,8 @@ def chompC(t, c) :
 """
 def chompL(t, l) :
     if l - 1 < 0 or l > getRowNb(t) :
-        raise(ValueError("erreur"))
+        mess = "erreur valeur {} < 0 ou > nombre de lignes de la matrice".format(l - 1)
+        raise(ValueError(mess))
     if l - 1 == 0 :
         return [array(t[l:, :])]
     if l == getRowNb(t):
