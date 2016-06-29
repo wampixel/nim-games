@@ -78,19 +78,19 @@ class iaUlehla :
         fonction de dénoyautage définie dans l'article de Ulehla comme étant
         la fonction L
     """
-    def lFunction(self, f) :
+    def lFunction(self, forest) :
         whiteNode = []
         #recherche des nœuds BLANC
         #aucun besoin de calculer la couleur de tous les nœuds, il faut seulement
         #être capable de pouvoir être sur de la couleur
 
-        for i in f.getPrefixList() :
-            if colorNode(f, i) == BLANC :
+        for i in forest.getPrefixList() :
+            if colorNode(forest, i) == BLANC :
                 whiteNode.append(i)
 
         #dénoyautage de la foret, on supprime tous les nœuds BLANC
         for i in whiteNode :
-            f.delNode(i)
+            forest.delNode(i)
 
     """
         fonction qui calcule la parité de la foret.

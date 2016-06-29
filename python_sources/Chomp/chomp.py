@@ -17,7 +17,7 @@ import numpy
         sur un jeu a une tablette la méthode de résolution implanté dans le fichier resolver.py fonctionne, cependant lorsque l'on passe
         a un jeu avec plus d'une tablette, la méthode de résolution de fonctionne plus.
         Ceci vient du fait que le jeu ne prend pas en compte les tablettes se ressemblant, il cherche simplement a résoudre le jeu en considérant
-        l'ensemble des tablettes en une seule tablette contenant l'ensemble.
+        l'ensemble des tablettes en une seule tablette contenant l'ensemble (cf resolver.py).
 """
 
 #FONCTIONS
@@ -187,5 +187,7 @@ def main() :
         print("vous avez gagné !")
 
 #POINT DE DEPART DU JEU
-if __name__ == '__main__' :
-    main()
+# if __name__ == '__main__' :
+#     main()
+tab = aleaGame()
+print(tab)

@@ -17,7 +17,7 @@ from pylab import *
 
     et posons la fonction f(T) de la façon suivante :
         f(T) == 1 si et seulement si N est impair ou M est impair (position perdante, on peux gagner d'après théorème Sprague-Grundy)
-        f(T) == 0 sinon (position gagnante, on ne peux pas gagner d'après le théorème de Sprague-Grundy)
+        f(T) == 2 sinon (position gagnante, on ne peux pas gagner d'après le théorème de Sprague-Grundy)
 
     étendons cette fonction  a une position P d'un jeu a n tablettes noté T1, T2, ..., Tn :
         f(P) == 1 si sum(N de ti) est impair ou sum(M de ti) est impair pour tout i entre 1 et n
@@ -70,7 +70,7 @@ def f(p) :
     if sumC % 2 != 0 or sumL % 2 != 0 :
         return 1
     
-    return 0
+    return 2
 
 """
     retourne le nombre de colonnes de la tablette t

@@ -9,10 +9,7 @@ from random import randrange
     sinon retourne le coup gagnant
 """
 def getwinningStrat(l) :
-    s = 0
-    for i in l:
-        s += i
-    s = num_add(l)
+    s = numAdd(l)
     if s == 0 :
         return 0, 1
     else :
@@ -28,19 +25,16 @@ def getwinningStrat(l) :
                         return i, (l[i] - k)
                     else :
                         k += 1
-                i += 1
+            i += 1
 
 """
     calcul et retourne la somme de Nim du jeu donné en entrée
 """
-def num_add(l) :
-    i = 0
+def numAdd(l) :
     s = 0
-    while i < len(l) :
-        s = s ^ l[i]
-        i += 1
+    for i in l :
+        s = s ^ i
     return s
-
 """
     retourne aléatoirement le coup a jouer
     cette fonction permet de ne suivre aucune méthode pour connaitre le coup gagnant
