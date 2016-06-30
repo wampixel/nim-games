@@ -5,6 +5,14 @@
 \usepackage[francais]{babel}
 \usepackage{hyperref}
 \usepackage{ulem}
+\usepackage{tikz}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+
+\usetikzlibrary{arrows,automata}
+\usetikzlibrary{mindmap}
+
+
 
 \logo{img/logo_univ.png}
 \author{Tristan Rodriguez}
@@ -13,27 +21,44 @@
 \projet{Stage 2015-2016}
 \projdesc{Stage au sein du département informatique du Madrillet}
 \title{Rapport de stage}
-\version{0.3}
-% \signataire{Carla Selmi}
+\version{1.0}
+% \signataire{Carla Selmi et Jean-philippe Dubernard}
 
 %historique du stage en page de garde
 \histentry{0.1} {du 9 au 14 mai} {recherche bibliographique (Théorème de Spague-Grundy et différents jeux de Nim) et étude de l'article de J. Ulehla}
 \histentry{0.1.1} {du 16 au 21 mai} {recherche technique sur le python et implantation d'un jeu de Nim ordinaire}
 \histentry{0.1.2} {du 23 au 27 mai} {étude du travail de Samuel Giraudo et Cédric Leroy sur les listes préfixes et suffixe dans les arbres}
 \histentry{0.2} {du 30 mai au 2 juin} {fin de l'implantation de la méthode Ulehla et une foret géré grâce aux listes préfixe et suffixe}
-\histentry{0.3} {du 6 au 10 juin} {début de la rédaction du rapport et mise en forme de la preuve sur les listes préfixe et suffixe}
+\histentry{0.3.1} {du 6 au 10 juin} {début de la rédaction du rapport et mise en forme de la preuve sur les listes préfixe et suffixe}
+\histentry{0.3.2} {du 12 au 16 juin} {étude du jeu de Chomp revisité}
+\histentry{1.0} {du 20 au 28 juin} {rédaction du rapport de stage}
 
 %Document principal
 \begin{document}
   \maketitle
-  \tableofcontents
+  \vspace*{\stretch{1}}
+    \begin{center}
+      \textbf{Remerciements}
+
+      Avant toute choses, je tient a remercier Carla Selmi, Jean-phlippe Dubernard qui m'ont donné la possibilité de découvrir le métier d'enseignant chercheur et m'ont fait confiance durant ce stage. Je tient également a remercier Yacine Hmito qui a travaillé avec moi et qui m'a aidé et a partagé son travail et ses connaissances.
+
+      Ce stage a  été propose et encadré par Carla Selmi et Jean-phlippe Dubernard.
+
+      Ce rapport a été rédigé \LaTeX.
+    \end{center}
+  \vspace*{\stretch{1}}
+
   \clearpage
   
+  \tableofcontents
+  \clearpage
+
+
   \section{Introduction}
   \label{sec:Introduction}
   \input{text/intro.tex}
   
-  \section{généralités}
+  \section{Généralités}
   \label{sec:généralités}
   \input{text/gen.tex}
     
@@ -54,3 +79,4 @@
   % \addcontentsline{toc}{section}{Références}
   
 \end{document}
+    

@@ -21,7 +21,7 @@ Pour pouvoir implanter la methode de resolution, nous avons eu besoin de plusieu
 \end{itemize}
 
 L'algorithme pour avoir le coup gagnant d'une situation de jeu est la suivante :
-\begin{algorithm}
+\begin{algorithm}[hbt]
   \caption{calcul le coup gagnant si il existe}
   \begin{algorithmic}
     \REQUIRE l une liste de tas représentant une situation de jeu
@@ -62,7 +62,7 @@ Cet algorithme est en temps linéaire sur la somme des éléments de la liste. D
 
 Cet algorithme repose sur une addition spéciale appelé addition de Nim. Elle a été implanté dans la fonction \texttt{numAdd} et fonctionne de la façon suivante :
 
-\begin{algorithm}[h]
+\begin{algorithm}[hbt]
   \caption{addition de Nim}
   \begin{algorithmic}[h]
     \REQUIRE l une liste de tas représentant une situation de jeu
@@ -103,13 +103,13 @@ Cette classe utilise aussi deux méthodes privées qui permettent de \textit{col
 
 La première \texttt{colorNodeSucc(succList)} qui permet de colorer un nœud grâce a la liste de ses successeurs. Cette prend en entrée une liste de couleurs qui représente la liste des couleurs de ses successeurs et elle retourne \texttt{BLANC} si et seulement si toutes les couleurs de la liste sont a \texttt{NOIR}. Si jamais la couleur d'au moi ns un des successeurs est a \texttt{BLANC}, la méthode retourne \texttt{NOIR}.
 
-La seconde méthode privée \texttt{colorNode(forest, node)} elle permet de colorer le noeud \texttt{node} dans la foret \texttt{forest}.Cette metthode construit recursivement la liste des couleurs des successeurs du noeud \texttt{node} et utilise la methode \texttt{colorNodeSucc(succList)}.
+La seconde méthode privée \texttt{colorNode(forest, node)} elle permet de colorer le noeud \texttt{node} dans la foret \texttt{forest}.Cette methode construit recursivement la liste des couleurs des successeurs du noeud \texttt{node} et utilise la methode \texttt{colorNodeSucc(succList)}.
 
 L'avantage de cette methode est de ne pas colorer entierement la foret, en effet, pour savoir si un noeud est blanc, nous devons etre sur que tous les fils du noeud que l'on veut colorer sont bien \texttt{NOIR}, cependant, pour qu'un noeud soit \texttt{NOIR}, il suffit de savoir qu'un fils est bien \texttt{BLANC}.
 
 Dans la suite, nous allons presenter les algorithmes permettant de savoir si un coup gagnant existe, puis nous presenterons ensuite les algorithmes des fonctions propre a la methode Ulehla (\texttt{ripFunction} et \texttt{lFunction})
 
-\begin{algorithm}[h]
+\begin{algorithm}[hbt]
   \caption{Calcul si le coup gagnant existe}
   \begin{algorithmic}
     \REQUIRE f une foret quelconque
@@ -137,7 +137,7 @@ Dans la suite, nous allons presenter les algorithmes permettant de savoir si un 
 
 Cet algorithme a besoin de la fonction \texttt{getNodeForWin(forestL)} qui implante l'algorithme suivant :
 
-\begin{algorithm}[h]
+\begin{algorithm}[hbt]
   \caption{calcul le coup gagnant dans la suite des forets dénoyautées}
   \begin{algorithmic}
     \REQUIRE forestL la suite des forets dénoyautées
@@ -185,7 +185,7 @@ les fonctions précédentes permettent a partir du nimber d'un position de savoi
 
 L'algorithme de ces fonctions sont les suivantes :
 
-\begin{algorithm}
+\begin{algorithm}[hbt]
   \caption{fonction rip}
     \begin{algorithmic}
     \REQUIRE f une foret
@@ -202,7 +202,7 @@ L'algorithme de ces fonctions sont les suivantes :
 
 Cet algorithme est linéaire sur le nombre de nœud de la foret. En effet, pour trouver le nombre de racines blanches, il faut parcourir la foret complète et trouver tous les nœuds sans prédécesseurs(les racines) et trouver la couleur du nœud.
 
-\begin{algorithm}
+\begin{algorithm}[hbt]
   \caption{fonction l}
   \begin{algorithmic}
     \REQUIRE f une foret
