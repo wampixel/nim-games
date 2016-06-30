@@ -79,7 +79,6 @@ def getWinningStrat(p) :
             #si jamais le coup j dans la matrice p[i] est gagnant, on sait ou jouer
             if f(tmp) == 0 :
                 return (i, k, 1)
-        print(i,j)
     #si on ne sait pas ou jouer pour pouvoir obtenir un coup gagnant selon la définition de f(p)
     return (0, 1, 1)
 
@@ -187,7 +186,5 @@ def main() :
         print("vous avez gagné !")
 
 #POINT DE DEPART DU JEU
-# if __name__ == '__main__' :
-#     main()
-tab = aleaGame()
-print(tab)
+if __name__ == '__main__' :
+    main()

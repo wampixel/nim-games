@@ -1,0 +1,133 @@
+matrice 1x1
+True nimberE = 1 nimberC = 1
+matrice 1x2
+True nimberE = 2 nimberC = 2
+matrice 1x3
+True nimberE = 3 nimberC = 3
+matrice 1x4
+True nimberE = 4 nimberC = 4
+matrice 1x5
+True nimberE = 5 nimberC = 5
+matrice 1x6
+True nimberE = 6 nimberC = 6
+matrice 1x7
+True nimberE = 7 nimberC = 7
+matrice 1x8
+True nimberE = 8 nimberC = 8
+matrice 1x9
+True nimberE = 9 nimberC = 9
+matrice 1x10
+True nimberE = 10 nimberC = 10
+matrice 1x11
+True nimberE = 11 nimberC = 11
+matrice 2x2
+True nimberE = 0 nimberC = 0
+matrice 2x3
+True nimberE = 1 nimberC = 1
+matrice 2x4
+True nimberE = 0 nimberC = 0
+matrice 2x5
+True nimberE = 1 nimberC = 1
+matrice 2x6
+True nimberE = 0 nimberC = 0
+matrice 2x7
+True nimberE = 1 nimberC = 1
+matrice 2x8
+True nimberE = 0 nimberC = 0
+matrice 2x9
+True nimberE = 1 nimberC = 1
+matrice 2x10
+True nimberE = 0 nimberC = 0
+matrice 2x11
+True nimberE = 1 nimberC = 1
+matrice 3x3
+True nimberE = 2 nimberC = 2
+matrice 3x4
+True nimberE = 1 nimberC = 1
+matrice 3x5
+True nimberE = 2 nimberC = 2
+matrice 3x6
+True nimberE = 1 nimberC = 1
+matrice 3x7
+True nimberE = 2 nimberC = 2
+matrice 3x8
+True nimberE = 1 nimberC = 1
+matrice 3x9
+True nimberE = 2 nimberC = 2
+matrice 3x10
+True nimberE = 1 nimberC = 1
+matrice 3x11
+True nimberE = 2 nimberC = 2
+matrice 4x4
+True nimberE = 0 nimberC = 0
+matrice 4x5
+True nimberE = 1 nimberC = 1
+matrice 4x6
+True nimberE = 0 nimberC = 0
+matrice 4x7
+True nimberE = 1 nimberC = 1
+matrice 4x8
+True nimberE = 0 nimberC = 0
+matrice 4x9
+True nimberE = 1 nimberC = 1
+matrice 4x10
+True nimberE = 0 nimberC = 0
+matrice 4x11
+True nimberE = 1 nimberC = 1
+matrice 5x5
+True nimberE = 2 nimberC = 2
+matrice 5x6
+True nimberE = 1 nimberC = 1
+matrice 5x7
+True nimberE = 2 nimberC = 2
+matrice 5x8
+True nimberE = 1 nimberC = 1
+matrice 5x9
+True nimberE = 2 nimberC = 2
+matrice 5x10
+True nimberE = 1 nimberC = 1
+matrice 5x11
+True nimberE = 2 nimberC = 2
+matrice 6x6
+True nimberE = 0 nimberC = 0
+matrice 6x7
+True nimberE = 1 nimberC = 1
+matrice 6x8
+True nimberE = 0 nimberC = 0
+matrice 6x9
+True nimberE = 1 nimberC = 1
+matrice 6x10
+True nimberE = 0 nimberC = 0
+matrice 6x11
+True nimberE = 1 nimberC = 1
+matrice 7x7
+True nimberE = 2 nimberC = 2
+matrice 7x8
+True nimberE = 1 nimberC = 1
+matrice 7x9
+True nimberE = 2 nimberC = 2
+matrice 7x10
+True nimberE = 1 nimberC = 1
+matrice 7x11
+True nimberE = 2 nimberC = 2
+matrice 8x8
+True nimberE = 0 nimberC = 0
+matrice 8x9
+True nimberE = 1 nimberC = 1
+matrice 8x10
+True nimberE = 0 nimberC = 0
+matrice 8x11
+True nimberE = 1 nimberC = 1
+matrice 9x9
+True nimberE = 2 nimberC = 2
+matrice 9x10
+True nimberE = 1 nimberC = 1
+matrice 9x11
+True nimberE = 2 nimberC = 2
+matrice 10x10
+True nimberE = 0 nimberC = 0
+matrice 10x11
+True nimberE = 1 nimberC = 1
+matrice 11x11
+True nimberE = 2 nimberC = 2
+

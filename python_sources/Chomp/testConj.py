@@ -15,6 +15,15 @@ from resolver import *
     et m ou n impair, alors on a :
         nimber(mxn) = 1 si m+n impair
                       2 sinon
+
+    le premier test a été effectué pour les 66 premières matrices de maximum 11 lignes 
+    et 11 colonnes et nous n'avons pas eu de contre exemple.
+
+    une idée d’amélioration serait de faire un dictionnaire pour les tablettes calculées
+    c'est a dire :
+        mémoriser l'association d'une tablette a son nimber
+
+    Ceci permettrai de pouvoir aller beaucoup plus loin dans les tests (110 secondes pour les 66 premières matrices)
 """
 
 #calcul du nimber de façon exhaustive
@@ -39,25 +48,44 @@ def  getNimber(tabl) :
             return nbC if nbL == 1 else nbL        
         #deuxieme conjecture
         if nbL % 2 == 0 and nbC % 2 == 0 :
-            return 1
+            return 0
 
         nimbers = []
-        # succ = getSucc(tabl)
-        # for i in succ :
-        #     nimber.append(exhaustive(i))
+        succ = getSucc(tabl)
+        for i in succ :
+            nimbers.append(exhaustive(i))
 
-        # for i in (0, max(nimbers)):
-        #     if i not in nimbers :
-        #         return i
+        # print(nimbers)
+        # print(succ)
+        # print(max(nimbers) + 1)
+        for i in range(0, max(nimbers) + 2):
+            if i not in nimbers :
+                return i
 
+        return -1
 """
     calcul et retourne la liste des successeurs
 """
 def getSucc(tabl) :
     nbL, nbC = tabl.shape
     res = []
-    for i in (1, nbL) :
-        
+    for l in range(1, int(nbL / 2) + 2) :
+        tmp = chompL(tabl, l)
+        (ll,cc) = tmp[0].shape
+        if ll != 0 and cc != 0 :
+            res.append(tmp)
+       
+    for c in range(1, int (nbC / 2) + 2) :
+        tmp = chompC(tabl, c)
+        (ll,cc) = tmp[0].shape
+        if ll != 0 and cc != 0 :
+            res.append(tmp)
+        else :
+            #cas d'une matrice vide important a prendre en compte car nimber 
+            #d'une matrice vide = 0
+            res.append([])
+       
+    return res
 
 #calcul du nimber d’après notre conjecture
 """
@@ -77,8 +105,6 @@ def conjecture(tabl) :
     #troisieme conjecture
     return 2 if (nbL + nbC) % 2 == 0 else 1
 
-#test de la conjecture
-
 #creation de la tablette
 """
     génère une tablette de maxC colonnes et maxL lignes
@@ -92,10 +118,19 @@ def createTable(maxC=5, maxL=5) :
 
     return array(li)
 
+#point d’entrée du programme
+"""
+    fonction qui test toutes les tablettes de la forme
+    1x1, 1x2, ... 1xmaxC, 2x2,...maxLxmacC
+"""
+def main(maxL, maxC) :
+    for i in range(1, maxL + 1) :
+        for j in range(i, maxC + 1) :
+            t = createTable(j, i)
+            e = getNimber(t)
+            c = conjecture(t)
+            print("matrice {}x{}".format(i, j))
+            print(e == c, "nimberE =", e, "nimberC =", c)      
 
-#TESTS
-t = createTable(1,3)
-
-print(t)
-print(getNimber(t))
-print(conjecture(t))
+if __name__ == '__main__' :
+    main(11, 11)
