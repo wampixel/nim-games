@@ -11,7 +11,7 @@ Dans cette partie, nous allons présenter les outils théoriques dans l'ordre d�
   }
   \subsubsection{Jeu de Nim simple}
   \label{subsub: Jeu de Nim simple}
-    Un jeu de Nim simple est un jeu de Nim comme défini ci dessus a ceci près qu'il peut être résolu de façon rapide. Ces jeux ont été résolus par Charles Bouton en 1901 qui a trouvé un algorithme permettant le gain.
+    Un jeu de Nim simple est un jeu de Nim comme défini ci dessus a ceci près qu'il peut être résolu de façon rapide. Ces jeux ont été résolus par Charles Bouton en 1901\cite{jfji} qui a trouvé un algorithme permettant le gain.
 
     \textit{
       Le graphe suivant permet de représenter tous les cas possibles pour un jeu de Nim décrit ci dessus avec un tas a 3 allumettes
@@ -41,7 +41,7 @@ Dans cette partie, nous allons présenter les outils théoriques dans l'ordre d�
 
     Le principe de l'algorithme de Bouton est de donner une valeur a chacun des états du graphe représentant le jeu appelé \textit{Nimber}. Dans le cas d'un jeu \`a un tas unique, le \textit{nimber} d'un états est la valeur du états elle même.
 
-    L'attribution de ce \textit{nimber} est récursive, tout les états finaux (un seul état final dans le cas d'un jeu a un tas) ont comme \textit{nimber} 0. Ensuite, pour tout états, \textit{nimber} est égal au plus petit entier qui n'est pas égal au nimber de chacun de ces fils.
+    L'attribution de ce \textit{nimber} est récursive, tout les états finaux (un seul état final dans le cas d'un jeu a un tas) ont comme \textit{nimber} 0. Ensuite, pour tout états, \textit{nimber} est égal au plus petit entier qui n'est pas égal au nimber de chacun de ces fils. Nous pouvons bien facilement voir alors que ce nimber est une interprétation du noyau d'un graphe. En effet, tous les éléments du noyau du graphe d'un jeu seront les éléments ayant un nimber égal a 0.
 
     \textit {
     reprenons l'exemple précédent, l’état ou le jeu est fini aura comme valeur de nimber 0, ensuite pour l’état avec 1 allumette, nous aurons comme valeur de nimber 1. Comme nous connaissons le nimber de tous les fils de l’état avec deux allumettes, nous pouvons donner comme valeur de nimber le plus petit entier qui n'est égal a aucune valeur de nimber de ses fils, c'est pourquoi nous lui attribuons la valeur 2. Enfin nous appliquons le même procédé pour l’état avec 3 allumettes et nous lui attribuons la valeur 3.
@@ -56,15 +56,14 @@ Dans cette partie, nous allons présenter les outils théoriques dans l'ordre d�
   \subsubsection{Jeu de Nim complexe}
   \label{subsub:Jeu de Nim complexe}
 
-    AJOUTER NIMBER = INTERPRETATION DU NOYAU D'UN GRAPHE
-    Un jeu de Nim complexe est un ensemble de jeu de Nim simples. Ils ont été résolus indépendamment par Roland Sprague en 1935 et Patrick Grundy en 1939.
+    Un jeu de Nim complexe est un ensemble de jeu de Nim simples. Ils ont été résolus indépendamment par Roland Sprague en 1935 et Patrick Grundy en 1939\cite{jfji}.
 
     \textit{
       Par exemple, un jeu de Nim avec plusieurs tas d'allumettes ou l'on enlève une ou plusieurs allumettes dans un tas a la fois et le dernier joueur ayant retiré la dernière allumette est un jeu de Nim complexe.
     }
 
     \textit{
-      Le graphe suivant est le graphe d'un jeu avec uhn tas avec 3 allumettes et un tas avec 2 allumettes.
+      Le graphe suivant est le graphe d'un jeu avec un tas avec 3 allumettes et un tas avec 2 allumettes.
     }
 
      \begin{figure}[h]
@@ -140,7 +139,7 @@ Dans cette partie, nous allons présenter les outils théoriques dans l'ordre d�
   \caption{foret d'arbres d'un jeu de hackendot}
   \end{figure}
 
-  La résolution proposé en 1979 par Josef Ulehla est un dérivé de la méthode de résolution des jeux de Nim complexes. En effet, dans son papier \cite{} Ulehla cherche simplement a chercher une fonction qui permettrai de donner une valeur de nimber a une situation de jeu.
+  La résolution proposé en 1979 par Josef Ulehla est un dérivé de la méthode de résolution des jeux de Nim complexes. En effet, dans son papier \cite{UleHack} Ulehla cherche simplement a chercher une fonction qui permettrai de donner une valeur de nimber a une situation de jeu.
 
   Dans la suite, nous verrons un arbre comme étant un graphe. Le noyau d'un arbre est construit de la même façon que le noyau d'un graphe, tout élément n'ayant pas de fils appartiendra au noyau et tout élément ayant aucun fils n'appartenant pas au noyau appartiendra au noyau.
 
@@ -150,16 +149,16 @@ Dans cette partie, nous allons présenter les outils théoriques dans l'ordre d�
     \item\textit{\texttt{rip(f)}} (pour Root-ImParity) qui est égal a 0 (resp. 1) si le nombre de racines blanche de \textit{f} est pair (resp. impair).
   \end{enumerate}
 
-  A l'aide de ces deux fonctions, on peut maintenant définir la méthode de résolution du jeu. En effet, pour savoir si on a bien une stratégie gagnante, on commence par \textit{colorer} la foret du jeu. Colorer signifie que tous les nœuds appartenant au noyau sont \textit{blanc} et tous les autres sont \textit{noir}. Ensuite, on \textit{dénoyaute} la foret ce qui permet d'obtenir une nouvelle foret \textit{f'}. Nous répétons ce procédé jusqu’à obtenir une foret $f^n$ vide. La suite des forets $f^n$ permet de savoir si il y a une strategie gagnante pour la foret du jeu. En effet, lorsqu'il y a au moins un $rip(f^i)$ avec \textit{i} compris entre \textit{1} et \textit{n} vaut 1, alors il y a une stratégie gagnante.
+  A l'aide de ces deux fonctions, on peut maintenant définir la méthode de résolution du jeu. En effet, pour savoir si on a bien une stratégie gagnante, on commence par \textit{colorer} la foret du jeu. Colorer signifie que tous les nœuds appartenant au noyau sont \textit{blanc} et tous les autres sont \textit{noir}. Ensuite, on \textit{dénoyaute} la foret ce qui permet d'obtenir une nouvelle foret \textit{f'}. Nous répétons ce procédé jusqu’à obtenir une foret $f^n$ vide. La suite des forets $f^n$ permet de savoir si il y a une stratégie gagnante pour la foret du jeu. En effet, lorsqu'il y a au moins un $rip(f^i)$ avec \textit{i} compris entre \textit{1} et \textit{n} vaut 1, alors il y a une stratégie gagnante.
 
-  Dans cette méthode, la fonction pour donner une valeur de nimber a une position de jeu est la fonction \textit{rip} et l'addition de nim est la suite des valeurs de \textit{rip} de toutes les forets $f^n$.
+  Dans cette méthode, la fonction pour donner une valeur de nimber a une position de jeu est la fonction \textit{rip} et l'addition de Nim est la suite des valeurs de \textit{rip} de toutes les forets $f^n$.
 
   Enfin, dans sa méthode, Ulehla permet de savoir quel est le coup gagnant. Comme dans la résolution des jeux de Nim complexe, pour trouver quel est le coup gagnant, il suffit de trouver le coup permettant d'avoir une foret \textit{f''} qui lorsqu'on applique le procédé décrit précédemment, on obtienne une suite de \textit{rip} égaux a 0.
 
   Pour trouver ce coup gagnant lorsqu'il existe, il faut prendre la dernière foret de la suite noté $f^k$ tel \textit{rip($f^k$) = 1}. A partir de cette foret, on prend l'ensemble des racines blanches et leurs successeurs directs et on regarde quel suppression permet d'obtenir \textit{rip($f^k$) = 0}. On remonte la suite des forets en prenant a chaque fois l'ensemble constitué du coup gagnant de la foret précédente et ses successeurs.
 
   \textit{
-    reprenons l'exemple du début, la premiere question que nous nous posons est es ce que l'on a une strategie gagnante en jouant?
+    reprenons l'exemple du début, la première question que nous nous posons est es ce que l'on a une stratégie gagnante en jouant?
   }
 
   \begin{figure}[h]
@@ -304,4 +303,13 @@ Ensuite, nous avons cherché a diviser ce jeu de façon a pouvoir utiliser le th
 
 Puis nous avons implanté le jeu avec cette idée, cependant nous sommes tombé face a un contre exemple. C'est pourquoi nous avons essayé de faire en sorte de revoir la façon de calculer si le coup est gagnant. Nous avons donc pensé que lorsque nous avions plusieurs composantes connexes, nous pouvions les mettre sous la forme d'une tablette avec comme nombre de ligne la somme du nombre de ligne de toutes les composantes connexes et de la même façon le nombre de colonnes la somme des colonnes de toutes les composantes connexes.
 
-A la fin de ce stage, nous n'avons pas réussi a savoir comment faire pour savoir si il existe une strategie gagnante a partir d'une position de jeu donné et si oui comment calculer le coup gagnant.
+A la fin de ce stage, nous n'avons pas réussi a savoir comment faire pour savoir si il existe une stratégie gagnante a partir d'une position de jeu donné et si oui comment calculer le coup gagnant.
+
+Cependant, nous avons conjecturé que pour une position donnée le nimber valait :
+\begin{itemize}
+  \item \texttt{m} dans le cas d'une tablette 1xm ou mx1 (prouvé)
+  \item \texttt{0} si la tablette est de la forme 2nx2m (prouvé)
+  \item \texttt{1} si dans une tablette nxm avec m ou n impair m + n est impair
+  \item \texttt{2} sinon
+\end{itemize}
+  Nous avons mis au point un petit programme permettant la vérification de cette conjecture et a ce jour, nous n'avons pas trouvé de contre exemple.

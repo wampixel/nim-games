@@ -12,7 +12,7 @@ La première implantation effectué était principalement pour apprendre le pyth
 
 En effet, le jeu de Nim simple était simple a programmer car il ne demande que très peut de mémoire et la méthode de résolution est basé sur l’opération XOR\footnote{ou exclusif} sur l'ensemble des entiers.
 
-Pour implanter ce jeu, nous avons eu besoin de deux fichiers, le premier\texttt{ia.py} qui permet de pouvoir calculer si il existe un coup gagnant et savoir quel est ce coup, et le second \texttt{nim.py} qui est une implantation du jeu de Nim complexe a plusieurs tas.
+Pour implanter ce jeu, nous avons eu besoin de deux fichiers, le premier \texttt{ia.py} qui permet de pouvoir calculer si il existe un coup gagnant et savoir quel est ce coup, et le second \texttt{nim.py} qui est une implantation du jeu de Nim complexe a plusieurs tas.
 
 Pour pouvoir implanter la methode de resolution, nous avons eu besoin de plusieurs fonction :
 \begin{itemize}
@@ -136,7 +136,7 @@ Dans la suite, nous allons presenter les algorithmes permettant de savoir si un 
 \end{algorithm}
 
 Cet algorithme a besoin de la fonction \texttt{getNodeForWin(forestL)} qui implante l'algorithme suivant :
-
+\clearpage
 \begin{algorithm}[hbt]
   \caption{calcul le coup gagnant dans la suite des forets dénoyautées}
   \begin{algorithmic}
@@ -184,7 +184,7 @@ Ceci entraine que l'algorithme pour savoir si un coup gagnant existe est quadrat
 les fonctions précédentes permettent a partir du nimber d'un position de savoir ou est le coup gagnant. Ce nimber est attribué a une situation grâce a la fonction \texttt{rip} et la fonction \texttt{l} présenté dans l'article de Ulehla.
 
 L'algorithme de ces fonctions sont les suivantes :
-
+\clearpage
 \begin{algorithm}[hbt]
   \caption{fonction rip}
     \begin{algorithmic}
