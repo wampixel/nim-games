@@ -1,0 +1,377 @@
+\documentclass{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{tikz}
+\usepackage{graphicx}
+
+\usetikzlibrary{arrows,automata}
+\usetikzlibrary{mindmap}
+
+\graphicspath{{img/}}
+
+\usetheme{Singapore}
+% \usetheme{Warsaw}
+
+\title{Stage de Licence 3 au sein du département informatique de l’université de Rouen}
+
+\author[Tristan Rodriguez]{Tristan Rodriguez}
+\institute{Université de Rouen, L3 Info}
+\date{31/08/2016}
+
+\setbeamersize{text margin left=0.5cm, text margin right=0.5cm}
+\setbeamertemplate{blocks}[rounded][shadow=true]
+\setbeamertemplate{itemize item}[triangle]
+\beamertemplatetransparentcovered
+\addtobeamertemplate{footline}{\insertframenumber/\inserttotalframenumber}
+
+\begin{document}
+  \section{Introduction}
+  \label{sec:Introduction}
+
+
+  % Slide 1 : Titre (présentation des conditions d'acquisition du stage et de Madame Selmi et Monsieur Dubernard)
+  \begin{frame}
+    \titlepage
+  \end{frame}
+
+  % Slide 2 : Table des matières (présentation rapide du travail effectué)
+  \begin{frame}
+    \frametitle{Plan de la présentation}
+    \tableofcontents
+  \end{frame}
+
+  %Slide 3 : Présentation du département info
+  \begin{frame}
+    \frametitle{présentation du département informatique}
+    
+    \begin{center}
+      \includegraphics[width=0.3\textwidth, height=0.1\textwidth]{logo_univ.png}  
+    \end{center}
+
+    \begin{block} {effectif du département}
+      \begin{itemize}
+        \item une trentaine d'enseignant chercheurs
+        \item une vingtaine d'intervenant professionnels
+        \item dix salles d'ordinateurs en réseau géré par Monsieur Macadré
+      \end{itemize}
+    \end{block}
+    
+    \pause
+
+    \begin{block} {les thèmes de recherche du département}
+      \begin{itemize}
+        \item la combinatoire algebrique, enumerative et des mots
+        \item la theorie des langages
+        \item les automates fini
+        \item le calcul symbolique
+      \end{itemize}
+    \end{block}
+  \end{frame}
+
+  % Slide 4 : présentation des formations du département
+  \begin{frame}
+    \frametitle{présentation des formations du département informatique}
+
+    \begin{block} {les formations principales}
+      \begin{itemize}
+        \item une licence informatique
+        \item un master spécialisé sur le développement logiciel (GIL)
+        \item un master spécialisé sur la sécurité informatique (SSI)
+        \item un master spécialisé sur la recherche informatique (ITA)
+        \item des encadrement pour le doctorat (3 bourses obtenues pour l’année 2016-2017)
+      \end{itemize}
+    \end{block}
+  \end{frame}
+  % Slide 5 : Présentation des caractéristiques des jeux de Nim et de plusieurs jeux de nims connus
+  \begin{frame}
+    \frametitle{Un jeu de Nim, qu'est-ce que c'est ?}
+
+    \begin{block} {c'est un jeu qui :}
+      \begin{itemize}
+        \item se joue a deux joueur 
+        \item ne fait pas intervenir le hasard
+        \item ne peux pas terminer sur une égalité
+      \end{itemize}
+    \end{block}
+    
+    \pause
+
+    \begin{block} {jeux de Nim connus}
+      \begin{itemize}
+        \item jeu du tas d’allumettes résolu par Charles Bouton en 1901
+        \item jeu des tas d'allumettes résolu indépendamment par Roland Sprague en 1935 et Patrick Grundy en 1939
+      \end{itemize}
+    \end{block}
+  \end{frame}
+
+  \section{travail théorique}
+  \label{sec: travail théorique}
+
+  %Slide 6 : presentation de la methode de resolution des jeux de Nim simple
+  \begin{frame}
+    \frametitle{résolution d'un jeu d'un tas de 3 d'allumettes (Bouton)}
+    \only<1> {commençons par dessiner le graphe du jeux}
+    \only<2> {donnons un \textit{nimber} a chaque nœuds}
+    \only<2> {\alert{le nimber d'une position n'est autre que le nombre d'allumettes a cette position}}
+    \only<3> {comme le nimber de la situation de départ n'est pas nul, il existe une stratégie gagnante a partir de ce nœud}
+    \only<4> {nous cherchons maintenant comment obtenir un nimber nul a partir de cette position}
+    \only<5> {Dans cette situation simple, pour être sur de gagner il faut donc de retirer toutes les allumettes des le début du jeu.}
+
+    \only<1-4> {
+      \begin{figure}[h]
+        \centering
+        \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=3.5cm, semithick]
+          \tikzset{
+            state/.style = {shape=rectangle, rounded corners, draw, align=center, top color=white, bottom color=blue!20, text centered}
+          }
+
+          \node[initial, state] (3)                    {$3\ allumettes\ \only<2-3>{\color{red}3}$};
+          \node[state]          (f) [below of=3]       {$fin\ du\ jeu \ \only<2>{\color{red}0}\only<4>{\color{red}0}$};
+          \node[state]          (2) [below right of=f] {$2\ allumettes\ \only<2>{\color{red}2}$};
+          \node[state]          (1) [below left of=f]  {$1\ allumette\ \only<2>{\color{red}1}$};
+          
+          \path (3) edge (2)
+                (3) edge (1)
+                (3) edge (f)
+                (2) edge (1)
+                (2) edge (f)
+                (1) edge (f);    
+          \only<4->{\color{red} \path (3) edge (f);}  
+        \end{tikzpicture}
+      \end{figure}
+    }
+  \end{frame}
+
+  % Slide 7 : presentation du theoreme de Sprague-Grundy
+  \begin{frame}
+  \frametitle{résolution d'un jeu de Nim par le théorème de Sprague-Grundy}
+    \only<1> {La méthode repose sur le travail de Bouton : prenons un jeu avec deux tas donc chacun a 2 allumettes}
+
+    \only<2> {comme on ne peux retirer que dans un tas a la fois, le graphe devient plus grand}
+    \only<3> {on attribue a nouveau les nimbers comme la solution de Bouton}
+    \only<4> {comme le nimber de la situation de départ est nul, il n'existe pas de stratégie gagnante pour ce joueur}
+    \only<5> {cette solution nous montre que si l'on joue face a quelqu'un qui connait la méthode pour gagner, nous perdrons a tous les coups si nous jouons en premier}
+    \only<2-4> {
+      \begin{figure}[h]
+        \centering
+        \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.5cm, semithick]
+          \tikzset{
+            state/.style = {shape=rectangle, rounded corners, draw, align=center, top color=white, bottom color=blue!20, text centered}
+          }
+
+          \node[initial, state] (22)                     {$2,2\ \only<3-4>{\color{red}0}$};   
+          \node[state]          (21) [below left of=22]  {$2,1\ \only<3>{\color{red}3}$};
+          \node[state]          (11) [below left of=21]  {$1,1\ \only<3>{\color{red}0}$};
+          \node[state]          (2)  [below right of=22] {$2\ \only<3>{\color{red}2}$};
+          \node[state]          (1)  [below of=21]       {$1\ \only<3>{\color{red}1}$};
+          \node[state]          (f)  [below of=2]        {$final\ \only<3>{\color{red}0}$};
+          
+          \path (22) edge (21)
+                (22) edge (2)
+                (21) edge (2)
+                (21) edge (1)
+                (21) edge (11)
+                (11) edge (1)
+                (2) edge (1)
+                (2) edge (f)
+                (1) edge (f);        
+        \end{tikzpicture}
+      \end{figure}
+    }
+
+
+    \only<3> {le nimber d'une position est égal au \textit{ou exclusif} du nombre d'allumettes de chaque tas a cette position}
+  \end{frame}
+
+  % Slide 8 : présentation du jeu de Hackendot et bref historique de travail dessus
+  \begin{frame}
+    \frametitle{Le Hackendot qu'es-ce que c'est?}
+    \only<1> {
+      \begin{block}{quelques informations}  
+        \begin{itemize}
+          \item un jeu qui se joue sur une foret (un ensemble d'arbre)
+          \item la solution de ce jeu a été proposé par J. Ulehla en 1979
+          \item la solution est une application du théorème de Sprague-Grundy a ce jeu adapté pour ce jeu
+        \end{itemize}
+      \end{block}
+    }
+
+    \only<2-> {
+      \begin{block}{les règles du jeu}  
+        \begin{itemize}
+          \pause
+          \item on choisi un arbre présent dans la foret du jeu
+          \pause
+          \item on choisi un nœud dans l'arbre précédemment choisi
+          \pause
+          \item on retire tout le chemin menant du nœud choisi a la racine de l'arbre choisi 
+        \end{itemize} 
+      \end{block}
+    }
+
+    \only<5-> {
+      exemple :
+      \begin{figure}[h]
+        \centering
+        \begin{tikzpicture}[sibling distance=5em, every node/.style = {shape=rectangle, rounded corners, draw, align=center,
+                      top color=white, bottom color=blue!20}, right]
+
+          \node {a}
+            child{node {b}}
+            child{node {c}};
+        \end{tikzpicture}
+        \hspace{0.2cm}
+        \begin{tikzpicture}[sibling distance=5em, every node/.style = {shape=rectangle, rounded corners, draw, align=center,
+                            top color=white, bottom color=blue!20}], left]
+
+          \only<5> {
+            \node{d}
+            child{node{e}
+              child{node{\color{red}f}}
+            }
+            child{node{g}};
+          }
+
+          \only<6> {
+            \node{\color{red}d}
+              child{node{\color{red}e}
+                child{node{\color{red}f}}
+              }
+            child{node{g}};
+          }
+          \only<7> {
+            \node{g};
+          }
+        \end{tikzpicture}
+      \end{figure}
+            
+    }
+  \end{frame}
+
+  \section{Apports du stage}
+  \label{sec:apports_du_stage}
+  
+  \begin{frame}
+    \frametitle{La méthode Ulehla : l'existence du coup gagnant} 
+    \only<1> {
+      commençons par prendre une foret quelconque et regardons chaque arbres comme un graphe
+    }
+
+    \only<2-5> {
+      Colorons la foret et supprimons les nœuds appartenant au noyau
+      jusqu’à obtenir une foret vide et attribuons une valeur de Rip pour chaque foret obtenu
+    }
+    \only<1-2> {
+      \begin{figure}[h]
+        \centering
+        \begin{tikzpicture}[sibling distance=5em, every node/.style = {shape=rectangle, rounded corners, draw, align=center,
+          top color=white, bottom color=blue!20}, right]
+
+          \only<1> {
+            \node{a}
+              child{node{b}}
+              child{node{c}};
+          }
+
+          \only<2> {
+            \node {\color{black}a}
+              child{node {\color{white}b}}
+              child{node {\color{white}c}};
+          }
+
+        \end{tikzpicture}
+        \hspace{0.2cm}
+        \begin{tikzpicture}[sibling distance=5em, every node/.style = {shape=rectangle, rounded corners, draw, align=center,
+          top color=white, bottom color=blue!20}], left]
+          \only<1> {
+            \node{d}
+              child{node{e}
+                child{node{f}}
+              }
+              child{node{g}};
+          }
+          \only<2> {
+            \node{d}
+              child{node{e}
+                child{node{\color{white}f}}
+              }
+              child{node{\color{white}g}};
+          }
+        \end{tikzpicture}
+        \only<2> {\caption {F, Rip(F) = 0}}
+      \end{figure}
+    }
+
+    \only<3> {
+      \begin{figure}
+        \centering
+        \begin{tikzpicture}[sibling distance=5em, every node/.style = {shape=rectangle, rounded corners, draw, align=center,
+          top color=white, bottom color=blue!20}], left]
+
+          \node{\color{white}a};
+        
+        \end{tikzpicture}
+        \hspace{0.2cm}
+        \begin{tikzpicture}[sibling distance=5em, every node/.style = {shape=rectangle, rounded corners, draw, align=center,
+          top color=white, bottom color=blue!20}], left]
+        
+          \node{d}
+            child{node{\color{white}e}};
+        
+        \end{tikzpicture}
+        \caption{L(F), Rip(L(F)) = 1}
+      \end{figure}
+    }
+
+    \only<4> {
+      \begin{figure}
+        \begin{tikzpicture}[sibling distance=5em, every node/.style = {shape=rectangle, rounded corners, draw, align=center,
+          top color=white, bottom color=blue!20}], left]
+        
+          \node{\color{white}d};
+        
+        \end{tikzpicture}
+        \caption{$l^2(F)\ rip(l^2(F)) = 1$}
+      \end{figure}
+    }
+
+    \only<5> {
+      \begin{figure}
+        \begin{tikzpicture}[sibling distance=5em, every node/.style = {shape=rectangle, rounded corners, draw, align=center,
+          top color=white, bottom color=blue!20}], left]
+        
+          \node{};
+        
+        \end{tikzpicture}
+        \caption{$l^3(F)\ rip(l^2(F)) = 0$}
+      \end{figure}
+    }
+
+    \only<5> {
+      La valeur du Nimber de cette foret est la suite des rip de ces forets, donc on a un coup gagnant dans cette foret (valeur de Nimber de cette foret égal a 0110 = 6 en binaire).
+    }
+
+    \only<6> {
+      \begin{block}{l'essentiel}  
+        \begin{itemize}
+          \item adaptation du théorème de Sprague-Grundy
+          \item la valeur du nimber d'une foret est son rip
+          \item l'addition de Nim est la suite des rip d'une foret 
+        \end{itemize}
+      \end{block}
+
+      Mais comment savoir quel est ce coup gagnant ?
+    }
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Methode Ulehla : le calcul du coup gagnant}
+    \only<1> {
+      \begin{block}{}  
+        En plus d'adapter le theoreme de Sprague-Grundy, la methode de Ulehla permet de calculer le coup gagnant quand il existe
+      \end{block}
+    }
+  \end{frame}
+\end{document}

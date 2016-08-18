@@ -56,43 +56,41 @@ Dans cette partie, nous allons présenter les outils théoriques dans l'ordre d�
   \subsubsection{Jeu de Nim complexe}
   \label{subsub:Jeu de Nim complexe}
 
-    Un jeu de Nim complexe est un ensemble de jeu de Nim simples. Ils ont été résolus indépendamment par Roland Sprague en 1935 et Patrick Grundy en 1939\cite{jfji}.
+    Un jeu de Nim complexe est un ensemble de jeu de Nim simples. Ils ont été résolus indépendamment par Roland Sprague en 1935 et Patrick Grundy en 1939\cite{tsgE}.
 
     \textit{
       Par exemple, un jeu de Nim avec plusieurs tas d'allumettes ou l'on enlève une ou plusieurs allumettes dans un tas a la fois et le dernier joueur ayant retiré la dernière allumette est un jeu de Nim complexe.
     }
 
     \textit{
-      Le graphe suivant est le graphe d'un jeu avec un tas avec 3 allumettes et un tas avec 2 allumettes.
+      Le graphe suivant est le graphe d'un jeu avec deux tas de 2 allumettes.
     }
 
      \begin{figure}[h]
-      \centering
+        \centering
         \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=3.5cm, semithick]
           \tikzset{
-            state/.style = {shape=rectangle, rounded corners, draw, align=center,
-                            top color=white, bottom color=blue!20, text centered}
+            state/.style = {shape=rectangle, rounded corners, draw, align=center, top color=white, bottom color=blue!20, text centered}
           }
 
-          \node[initial, state] (3)                    {$3\ allumettes$};
-          \node[state]          (f) [below of=3]       {$fin\ du\ jeu$};
-          \node[state]          (2) [below right of=f] {$2\ allumettes$};
-          \node[state]          (1) [below left of=f]  {$1\ allumette$};
-
-          \node[state]          (ff)[right of=2]       {$fin\ du\ jeu$};
-          \node[state]          (11)[above of=ff]      {$1\ allumette$};
-          \node[initial, state] (22)[above of=11]      {$2\ allumettes$};
-
-          \path (3) edge (2)
-                (3) edge (1)
-                (3) edge (f)
+          \node[initial, state] (22)                     {$2\ allumettes,\ 2\ allumettes$};   
+          \node[state]          (21) [below left of=22]  {$2\ allumettes,\ 1\ allumettes$};
+          \node[state]          (11) [below left of=21]  {$1\ allumettes,\ 1\ allumettes$};
+          \node[state]          (2)  [below right of=22] {$2\ allumettes$};
+          \node[state]          (1)  [below of=21]       {$1\ allumettes$};
+          \node[state]          (f)  [below of=2]        {$final$};
+          
+          \path (22) edge (21)
+                (22) edge (2)
+                (21) edge (2)
+                (21) edge (1)
+                (21) edge (11)
+                (11) edge (1)
                 (2) edge (1)
                 (2) edge (f)
-                (1) edge (f)
-                (22) edge (11)
-                (11) edge (ff);      
-        \end{tikzpicture}
-      \caption{graphe du jeu de Nim complexe avec un tas a 3 allumettes et un tas a 2 allumettes}
+                (1) edge (f); 
+      \end{tikzpicture}   
+      \caption{graphe du jeu de Nim complexe avec 2 tas de 2 allumettes}
     \end{figure}
 
     La résolution de ces jeux est une généralisation de la méthode de résolution des jeux de Nim simples. Le principe est de \textit{diviser pour mieux régner}. En effet, nous divisons le jeu en autant de jeux de Nim simples qu'il y a de tas.
@@ -104,7 +102,7 @@ Dans cette partie, nous allons présenter les outils théoriques dans l'ordre d�
     Comme le jeu de Nim simple, lorsque le nimber d'une position est égal a 0, on se trouve dans une position gagnante du jeu et dans tous les autres cas, nous nous trouvons dans une position perdante.
 
     \textit {
-      dans l'exemple suivant, le joueur 1 qui commencera a jouer a partir de la position (3,2), pourra gagner puisqu'il pourra arriver suite a un mouvement a une position gagnante. Pour savoir quel est ce coup gagnant, il suffit de trouver une valeur pour un des deux tas qui permette d'obtenir un nimber a 0. Ce coup est facile a trouver puisqu'il suffit de retirer une allumette dans le tas avec 3 allumettes (2 ou exclusif 2 est bien égal a 0). Le joueur 1 a donc bien une stratégie gagnante.
+      dans l'exemple d'un jeu avec un tas de 3 allumettes et un tas de 2 allumettes, le joueur qui commencera a jouer a partir de la position (3,2), pourra gagner puisqu'il pourra arriver suite a un mouvement a une position gagnante. Pour savoir quel est ce coup gagnant, il suffit de trouver une valeur pour un des deux tas qui permette d'obtenir un nimber a 0. Ce coup est facile a trouver puisqu'il suffit de retirer une allumette dans le tas avec 3 allumettes (2 ou exclusif 2 est bien égal a 0). Le joueur qui commence a donc bien une stratégie gagnante.
     }
 
     Cette méthode de résolution est très utilisé puisque nous pouvons trouver une fonction permettant d'attribuer une valeur de nimber en fonction du jeu que nous étudions.
@@ -119,27 +117,28 @@ Dans cette partie, nous allons présenter les outils théoriques dans l'ordre d�
     par exemple l'ensemble d'arbre suivant est une situation initial d'un jeu de Hackendot
   }
   \begin{figure}[h]
-  \centering
-    \begin{tikzpicture}[sibling distance=10em, every node/.style = {shape=rectangle, rounded corners, draw, align=center,
-                        top color=white, bottom color=blue!20}, right]
+        \centering
+        \begin{tikzpicture}[sibling distance=5em, every node/.style = {shape=rectangle, rounded corners, draw, align=center,
+                      top color=white, bottom color=blue!20}, right]
 
-      \node {a}
-        child{node {b}}
-        child{node {c}};
-    \end{tikzpicture}
+          \node {a}
+            child{node {b}}
+            child{node {c}};
+        \end{tikzpicture}
+        \hspace{0.2cm}
+        \begin{tikzpicture}[sibling distance=5em, every node/.style = {shape=rectangle, rounded corners, draw, align=center,
+                            top color=white, bottom color=blue!20}], left]
+            \node{d}
+            child{node{e}
+              child{node{f}}
+            }
+            child{node{g}};
+        \end{tikzpicture}
 
-    \begin{tikzpicture}[sibling distance=10em, every node/.style = {shape=rectangle, rounded corners, draw, align=center,
-                        top color=white, bottom color=blue!20}], left]
-        \node{d}
-        child{node{e}
-          child{node{f}}
-        }
-        child{node{g}};
-    \end{tikzpicture}
   \caption{foret d'arbres d'un jeu de hackendot}
   \end{figure}
 
-  La résolution proposé en 1979 par Josef Ulehla est un dérivé de la méthode de résolution des jeux de Nim complexes. En effet, dans son papier \cite{UleHack} Ulehla cherche simplement a chercher une fonction qui permettrai de donner une valeur de nimber a une situation de jeu.
+  La résolution proposé en 1979 par Josef Ulehla est un dérivé de la méthode de résolution des jeux de Nim complexes. En effet, dans son papier \cite{UleHack} Ulehla cherche simplement une fonction qui permettrai de donner une valeur de nimber a une situation de jeu.
 
   Dans la suite, nous verrons un arbre comme étant un graphe. Le noyau d'un arbre est construit de la même façon que le noyau d'un graphe, tout élément n'ayant pas de fils appartiendra au noyau et tout élément ayant aucun fils n'appartenant pas au noyau appartiendra au noyau.
 
@@ -170,7 +169,7 @@ Dans cette partie, nous allons présenter les outils théoriques dans l'ordre d�
         child{node {b blanc}}
         child{node {c blanc}};
     \end{tikzpicture}
-
+    \hspace{0.2cm}
     \begin{tikzpicture}[sibling distance=10em, every node/.style = {shape=rectangle, rounded corners, draw, align=center,
                         top color=white, bottom color=blue!20}], left]
         \node{d noir}
@@ -187,7 +186,7 @@ Dans cette partie, nous allons présenter les outils théoriques dans l'ordre d�
 
       \node {a blanc};
     \end{tikzpicture}
-
+    \hspace{0.2cm}
     \begin{tikzpicture}[sibling distance=10em, every node/.style = {shape=rectangle, rounded corners, draw, align=center,
                         top color=white, bottom color=blue!20}], left]
         \node{d noir}
@@ -195,7 +194,7 @@ Dans cette partie, nous allons présenter les outils théoriques dans l'ordre d�
     \end{tikzpicture}
     
     l(F) rip(l(F)) = 1
-
+    
     \begin{tikzpicture}[sibling distance=10em, every node/.style = {shape=rectangle, rounded corners, draw, align=center,
                         top color=white, bottom color=blue!20}, right]
 
@@ -230,7 +229,7 @@ Dans cette partie, nous allons présenter les outils théoriques dans l'ordre d�
 \hypertarget{GenArbres}
   Durant l'implantation du jeu de Hackendot, nous nous sommes retrouvé face a une difficulté, comment implanter des arbres quelconques en python?
 
-  Pour répondre a ce problème, madame Selmi m'a fourni le travail d'un ancien étudiant qui a utilisé uniquement le parcours préfixe et suffixe sur les arbres et a permis de gérer l’intégralité de ce problème.
+  Pour répondre a ce problème, madame Selmi m'a fourni le travail d'un ancien étudiant\cite{SamWor} qui a utilisé uniquement le parcours préfixe et suffixe sur les arbres et a permis de gérer l’intégralité de ce problème.
 
   Quelque soit le parcours utilisé, nous regardons de gauche a droite les nœuds dans l'arbre, c'est a dire que lorsque nous sommes sur un nœud donné, nous regardons cherchons d'abord a découvrir récursivement tout son fils gauche puis nous allons découvrir sont fils droit.
 
@@ -270,6 +269,17 @@ Dans cette partie, nous allons présenter les outils théoriques dans l'ordre d�
   Nous avons aussi remarqué que tous les nœuds du chemin de la racine a un nœud \textit{n} était tous les nœuds commun a la liste S(n).
 
   Durant ce stage, la preuve de ces deux éléments a été fourni.
+
+  Ces listes préfixes et suffixes ont été utilisé sur des mots de Dyck générés de façon aléatoire avec une grammaire dont les règles sont :
+
+  \begin{itemize}
+    \item S -> () qui permet de créer une racine sans fils
+    \item S -> ()S qui permet de créer une racine avec une seconde arborescence
+    \item S -> (S) qui permet de créer une racine avec un sous arbre
+    \item S -> (S)S qui permet de créer une racine avec un sous arbre et une seconde arborescence
+  \end{itemize}
+
+  \textit{par exemple, dans l'arborescence précédente, le mot de Dyck est généré est : \texttt{((())())}}
 
 \subsection{Jeu de Chomp}
 \label{sub:Jeu de Chomp}
