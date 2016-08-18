@@ -1,4 +1,4 @@
-f       rom random import randrange
+from random import randrange
 
 """
     défini les fonctions d'utilisation des mots de Dyck
