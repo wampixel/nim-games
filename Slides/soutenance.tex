@@ -250,9 +250,6 @@
     }
   \end{frame}
 
-  \section{Apports du stage}
-  \label{sec:apports_du_stage}
-  
   \begin{frame}
     \frametitle{La méthode Ulehla : l'existence du coup gagnant} 
     \only<1> {
@@ -370,8 +367,153 @@
     \frametitle{Methode Ulehla : le calcul du coup gagnant}
     \only<1> {
       \begin{block}{}  
-        En plus d'adapter le theoreme de Sprague-Grundy, la methode de Ulehla permet de calculer le coup gagnant quand il existe
+        En plus d'adapter le théorème de Sprague-Grundy, la méthode de Ulehla permet de calculer le coup gagnant quand il existe
       \end{block}
     }
+
+    \only<2> {
+      \begin{block}{}  
+        comme la dernière foret ayant une valeur de rip égale a 1 est la dernière foret qui n'est pas un coup gagnant, il faut choisir une racine blanche ou l'un de ses successeurs directs blanc et la supprimer au \textit{sens du jeu} afin d'avoir une valeur de rip égale a 0
+      \end{block}
+    }
+
+    \only<3-4> {
+      \begin{block}{}  
+        on remonte la liste des forets et on réitère le procédé 
+      \end{block}
+    }
+
+    \only<2> {
+      Dans l'exemple précédent, on doit chercher dans la foret $l^2(F)$ et on choisi le nœud \textit{d} qui nous permet d'avoir un rip égal a 0
+      \begin{figure}
+        \begin{tikzpicture}[sibling distance=5em, every node/.style = {shape=rectangle, rounded corners, draw, align=center,
+          top color=white, bottom color=blue!20}], left]
+        
+          \node{\only<2>{\color{white}}d};
+        
+        \end{tikzpicture}
+        \caption{$l^2(F)\ rip(l^2(F)) = 1$}
+      \end{figure}
+    }
+
+    \only<3> {
+      on choisi entre le nœud choisi précédemment et un de ses successeurs directs blanc dans la foret actuelle; ici si on supprime le nœud \textit{d}, alors on obtiendra bien une valeur de rip égale a 0
+
+      \begin{figure}
+        \centering
+        \begin{tikzpicture}[sibling distance=5em, every node/.style = {shape=rectangle, rounded corners, draw, align=center,
+          top color=white, bottom color=blue!20}], left]
+
+          \node{\color{white}a};
+        
+        \end{tikzpicture}
+        \hspace{0.2cm}
+        \begin{tikzpicture}[sibling distance=5em, every node/.style = {shape=rectangle, rounded corners, draw, align=center,
+          top color=white, bottom color=blue!20}], left]
+        
+          \node{d}
+            child{node{\color{white}e}};
+        
+        \end{tikzpicture}
+        \caption{L(F), Rip(L(F)) = 1}
+      \end{figure}
+    }
+
+    \only<4> {
+    arrivé a la foret initiale, on peux bien voir que si on supprime le nœud \textit{g}, alors on aura une valeur de rip égale a 0
+
+    \begin{figure}[h]
+        \centering
+        \begin{tikzpicture}[sibling distance=5em, every node/.style = {shape=rectangle, rounded corners, draw, align=center,
+          top color=white, bottom color=blue!20}, right]
+
+          \node {\color{black}a}
+            child{node {\color{white}b}}
+            child{node {\color{white}c}};
+          
+        \end{tikzpicture}
+        \hspace{0.2cm}
+        \begin{tikzpicture}[sibling distance=5em, every node/.style = {shape=rectangle, rounded corners, draw, align=center,
+          top color=white, bottom color=blue!20}], left]
+  
+          \node{d}
+            child{node{e}
+              child{node{\color{white}f}}
+            }
+            child{node{\color{white}g}};
+        
+        \end{tikzpicture}
+       \caption {F, Rip(F) = 0}
+      \end{figure}
+
+      c'est pourquoi dans cette foret, le coup gagnant est de supprimer le noeud \textit{g} de la foret
+    }
   \end{frame}
+
+  \section{Apports du stage}
+  \label{sec:apports_du_stage}
+  
+  \begin{frame}
+    \frametitle{Les apports techniques}
+    
+    \begin{block}{nouveau langages et technique de programmation}  
+      \begin{itemize}
+        \item Le python
+        \item Une nouvelle approche de la programmation orienté objet
+        \item une nouvelle approche de la programmation fonctionnelle
+      \end{itemize}
+    \end{block}
+    \pause
+    \begin{block}{méthode de travail}
+      \begin{itemize}
+        \item partage hebdomadaire du travail
+        \item recherches approfondies et mise en place d'un plan de travail
+        \item appréhension d'un travail a découvrir (jeu de Chomp revisité)
+        \item méthode de recherche et mise en forme d'une conjecture
+      \end{itemize}
+    \end{block}
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Les apports sur le métier d'enseignant chercheur}
+    \begin{block}{Les avantages}
+      \begin{itemize}
+        \item un métier en constante évolution
+        \item un apport en connaissance constant
+        \item la possibilité d'enseigner a un publique passionné
+        \item une flexibilité sur les horaires
+      \end{itemize}
+    \end{block}
+    \pause
+    \begin{block}{les a cotés du stage}
+      \begin{itemize}
+        \item la conférence de NORMASTIC
+        \item une conférence sur les posset et la preuve de la conjecture de Dumont
+        \item la répétition de la soutenance de thèse de M. Ali Chouria
+        \item la soutenance de thèse de M. Ali Chouria
+      \end{itemize}
+    \end{block}
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Les choix pour l'orientation}
+
+    \begin{block}{filière}  
+      Grâce a ce stage et mon projet annuel portant sur la sécurité informatique, mon choix se porte sur la filière SSI. Cependant, l’idée de faire le double cursus SSI/ITA pour le premier semestre est très intéressante. 
+
+      La thèse en milieu professionnel (thèse Cifre) est toujours envisage si la possibilité s'offre a moi
+    \end{block}
+    \pause
+    \begin{block}{Le monde professionnel}  
+      malgré énormément d'avantages dans le milieu universitaire, il reste encore trop de désavantage sur le nombre de poste, \textit{l'obligation} de quitter la région et le manque de financement dus a la politique actuelle des universités
+    \end{block}
+  \end{frame}
+
+  \begin{frame}
+    \begin{figure}
+      \centering
+      Merci de votre attention
+    \end{figure}
+  \end{frame}
+  
 \end{document}
