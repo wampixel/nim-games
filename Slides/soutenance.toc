@@ -1,0 +1,5 @@
+\beamer@endinputifotherversion {3.36pt}
+\select@language {french}
+\beamer@sectionintoc {1}{Introduction}{1}{0}{1}
+\beamer@sectionintoc {2}{Travail th\IeC {\'e}orique}{8}{0}{2}
+\beamer@sectionintoc {3}{Apports du stage}{35}{0}{3}

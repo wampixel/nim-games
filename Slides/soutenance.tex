@@ -44,37 +44,37 @@
 
   %Slide 3 : Présentation du département info
   \begin{frame}
-    \frametitle{présentation du département informatique}
+    \frametitle{Présentation du département informatique}
     
     \begin{center}
       \includegraphics[width=0.3\textwidth, height=0.1\textwidth]{logo_univ.png}  
     \end{center}
 
-    \begin{block} {effectif du département}
+    \begin{block} {Effectif du département}
       \begin{itemize}
-        \item une trentaine d'enseignant chercheurs
-        \item une vingtaine d'intervenant professionnels
-        \item dix salles d'ordinateurs en réseau géré par Monsieur Macadré
+        \item une trentaine d'enseignants-chercheurs
+        \item une vingtaine d'intervenants professionnels
+        \item dix salles d'ordinateurs en réseau gérées par Monsieur Macadré
       \end{itemize}
     \end{block}
     
     \pause
 
-    \begin{block} {les thèmes de recherche du département}
+    \begin{block} {Les thèmes de recherche du département}
       \begin{itemize}
-        \item la combinatoire algebrique, enumerative et des mots
-        \item la theorie des langages
-        \item les automates fini
+        \item la combinatoire algébrique, énumerative et des mots
+        \item la théorie des langages
+        \item les automates finis
         \item le calcul symbolique
       \end{itemize}
     \end{block}
   \end{frame}
 
-  % Slide 4 : présentation des formations du département
+  % Slide 4 : Présentation des formations du département
   \begin{frame}
-    \frametitle{présentation des formations du département informatique}
+    \frametitle{Présentation des formations du département informatique}
 
-    \begin{block} {les formations principales}
+    \begin{block} {Les formations principales}
       \begin{itemize}
         \item une licence informatique
         \item un master spécialisé sur le développement logiciel (GIL)
@@ -88,17 +88,17 @@
   \begin{frame}
     \frametitle{Un jeu de Nim, qu'est-ce que c'est ?}
 
-    \begin{block} {c'est un jeu qui :}
+    \begin{block} {C'est un jeu qui :}
       \begin{itemize}
-        \item se joue a deux joueur 
+        \item se joue à deux joueurs 
         \item ne fait pas intervenir le hasard
-        \item ne peux pas terminer sur une égalité
+        \item ne peut pas terminer sur une égalité
       \end{itemize}
     \end{block}
     
     \pause
 
-    \begin{block} {jeux de Nim connus}
+    \begin{block} {Jeux de Nim connus}
       \begin{itemize}
         \item jeu du tas d’allumettes résolu par Charles Bouton en 1901
         \item jeu des tas d'allumettes résolu indépendamment par Roland Sprague en 1935 et Patrick Grundy en 1939
@@ -106,18 +106,18 @@
     \end{block}
   \end{frame}
 
-  \section{travail théorique}
-  \label{sec: travail théorique}
+  \section{Travail théorique}
+  \label{sec: Travail théorique}
 
-  %Slide 6 : presentation de la methode de resolution des jeux de Nim simple
+  %Slide 6 : Présentation de la méthode de résolution des jeux de Nim simples
   \begin{frame}
-    \frametitle{résolution d'un jeu d'un tas de 3 d'allumettes (Bouton)}
-    \only<1> {commençons par dessiner le graphe du jeux}
-    \only<2> {donnons un \textit{nimber} a chaque nœuds}
-    \only<2> {\alert{le nimber d'une position n'est autre que le nombre d'allumettes a cette position}}
-    \only<3> {comme le nimber de la situation de départ n'est pas nul, il existe une stratégie gagnante a partir de ce nœud}
-    \only<4> {nous cherchons maintenant comment obtenir un nimber nul a partir de cette position}
-    \only<5> {Dans cette situation simple, pour être sur de gagner il faut donc de retirer toutes les allumettes des le début du jeu.}
+    \frametitle{Résolution du jeu d'un tas de 3 d'allumettes (Bouton)}
+    \only<1> {Commençons par dessiner le graphe du jeu}
+    \only<2> {Donnons un \textit{nimber} à chaque nœud ;}
+    \only<2> {\alert{le nimber d'une position n'est autre que le nombre d'allumettes à cette position.}}
+    \only<3> {Comme le nimber de la situation de départ n'est pas nul, il existe une stratégie gagnante à partir de ce nœud.}
+    \only<4> {Nous cherchons maintenant comment obtenir un nimber nul à partir de cette position.}
+    \only<5> {Dans cette situation simple, pour être sûr de gagner il faut donc retirer toutes les allumettes dès le début du jeu.}
 
     \only<1-4> {
       \begin{figure}[h]
@@ -144,15 +144,15 @@
     }
   \end{frame}
 
-  % Slide 7 : presentation du theoreme de Sprague-Grundy
+  % Slide 7 : Présentation du théorème de Sprague-Grundy
   \begin{frame}
-  \frametitle{résolution d'un jeu de Nim par le théorème de Sprague-Grundy}
-    \only<1> {La méthode repose sur le travail de Bouton : prenons un jeu avec deux tas donc chacun a 2 allumettes}
+  \frametitle{Résolution d'un jeu de Nim par le théorème de Sprague-Grundy}
+    \only<1> {La méthode repose sur le travail de Bouton : prenons un jeu avec deux tas dont chacun a 2 allumettes.}
 
-    \only<2> {comme on ne peux retirer que dans un tas a la fois, le graphe devient plus grand}
-    \only<3> {on attribue a nouveau les nimbers comme la solution de Bouton}
-    \only<4> {comme le nimber de la situation de départ est nul, il n'existe pas de stratégie gagnante pour ce joueur}
-    \only<5> {cette solution nous montre que si l'on joue face a quelqu'un qui connait la méthode pour gagner, nous perdrons a tous les coups si nous jouons en premier}
+    \only<2> {Comme on ne peut retirer que dans un tas à la fois, le graphe devient plus grand.}
+    \only<3> {On attribue à nouveau les nimbers comme la solution de Bouton.}
+    \only<4> {Comme le nimber de la situation de départ est nul, il n'existe pas de stratégie gagnante pour ce joueur.}
+    \only<5> {Cette solution nous montre que si l'on joue face à quelqu'un qui connait la méthode pour gagner, nous perdrons à tous les coups si nous jouons en premier.}
     \only<2-4> {
       \begin{figure}[h]
         \centering
@@ -182,31 +182,31 @@
     }
 
 
-    \only<3> {le nimber d'une position est égal au \textit{ou exclusif} du nombre d'allumettes de chaque tas a cette position}
+    \only<3> {Le nimber d'une position est égal au \textit{ou exclusif} du nombre d'allumettes de chaque tas à cette position.}
   \end{frame}
 
-  % Slide 8 : présentation du jeu de Hackendot et bref historique de travail dessus
+  % Slide 8 : Présentation du jeu de Hackendot et bref historique de travail dessus
   \begin{frame}
-    \frametitle{Le Hackendot qu'es-ce que c'est?}
+    \frametitle{Le Hackendot qu'est-ce que c'est?}
     \only<1> {
-      \begin{block}{quelques informations}  
+      \begin{block}{Quelques informations}  
         \begin{itemize}
-          \item un jeu qui se joue sur une foret (un ensemble d'arbre)
-          \item la solution de ce jeu a été proposé par J. Ulehla en 1979
-          \item la solution est une application du théorème de Sprague-Grundy a ce jeu adapté pour ce jeu
+          \item un jeu qui se joue sur une forêt (un ensemble d'arbres)
+          \item la solution de ce jeu a été proposée par J. Ulehla en 1979
+          \item la solution reprend l'idée du théorème de Sprague-Grundy appliqué au jeu de la forêt
         \end{itemize}
       \end{block}
     }
 
     \only<2-> {
-      \begin{block}{les règles du jeu}  
+      \begin{block}{Les règles du jeu}  
         \begin{itemize}
           \pause
-          \item on choisi un arbre présent dans la foret du jeu
+          \item on choisi un arbre présent dans la forêt du jeu
           \pause
           \item on choisi un nœud dans l'arbre précédemment choisi
           \pause
-          \item on retire tout le chemin menant du nœud choisi a la racine de l'arbre choisi 
+          \item on retire tout le chemin menant du nœud choisi à la racine de l'arbre choisi 
         \end{itemize} 
       \end{block}
     }
@@ -250,15 +250,16 @@
     }
   \end{frame}
 
+  % Slide 9: Explication du calcul pour l'existence du coup gagnant dans la méthode Ulehla
   \begin{frame}
     \frametitle{La méthode Ulehla : l'existence du coup gagnant} 
     \only<1> {
-      commençons par prendre une foret quelconque et regardons chaque arbres comme un graphe
+      Commençons par prendre une forêt quelconque et regardons chaque arbre comme un graphe.
     }
 
     \only<2-5> {
-      Colorons la foret et supprimons les nœuds appartenant au noyau
-      jusqu’à obtenir une foret vide et attribuons une valeur de Rip pour chaque foret obtenu
+      Colorons la forêt et supprimons les nœuds appartenant au noyau
+      jusqu’à obtenir une forêt vide et attribuons une valeur de Rip pour chaque forêt obtenue.
     }
     \only<1-2> {
       \begin{figure}[h]
@@ -347,15 +348,15 @@
     }
 
     \only<5> {
-      La valeur du Nimber de cette foret est la suite des rip de ces forets, donc on a un coup gagnant dans cette foret (valeur de Nimber de cette foret égal a 0110 = 6 en binaire).
+      Pour une forêt donnée, la valeur de son nimber est égale à la suite des Rip de ses dénoyautages consécutifs (la valeur de Nimber de cette forêt est égale à 0110 = 6 en binaire).
     }
 
     \only<6> {
-      \begin{block}{l'essentiel}  
+      \begin{block}{L'essentiel}  
         \begin{itemize}
           \item adaptation du théorème de Sprague-Grundy
-          \item la valeur du nimber d'une foret est son rip
-          \item l'addition de Nim est la suite des rip d'une foret 
+          \item la valeur du nimber d'une forêt est son Rip
+          \item l'addition de Nim est la suite des Rip d'une forêt 
         \end{itemize}
       \end{block}
 
@@ -363,28 +364,29 @@
     }
   \end{frame}
 
+  % Slide 10 : Explication du calcul du coup gagnant dans la méthode Ulehla
   \begin{frame}
     \frametitle{Methode Ulehla : le calcul du coup gagnant}
     \only<1> {
       \begin{block}{}  
-        En plus d'adapter le théorème de Sprague-Grundy, la méthode de Ulehla permet de calculer le coup gagnant quand il existe
+        En plus d'adapter le théorème de Sprague-Grundy, la méthode de Ulehla permet de calculer le coup gagnant quand il existe.
       \end{block}
     }
 
     \only<2> {
       \begin{block}{}  
-        comme la dernière foret ayant une valeur de rip égale a 1 est la dernière foret qui n'est pas un coup gagnant, il faut choisir une racine blanche ou l'un de ses successeurs directs blanc et la supprimer au \textit{sens du jeu} afin d'avoir une valeur de rip égale a 0
+        Comme la dernière forêt ayant une valeur de Rip égale à 1 est la dernière forêt qui n'est pas un coup gagnant, il faut choisir une racine blanche ou l'un de ses successeurs directs blanc et la supprimer au \textit{sens du jeu} afin d'avoir une valeur de Rip égale à 0.
       \end{block}
     }
 
     \only<3-4> {
       \begin{block}{}  
-        on remonte la liste des forets et on réitère le procédé 
+        On remonte la liste des forêts et on réitère le procédé. 
       \end{block}
     }
 
     \only<2> {
-      Dans l'exemple précédent, on doit chercher dans la foret $l^2(F)$ et on choisi le nœud \textit{d} qui nous permet d'avoir un rip égal a 0
+      Dans l'exemple précédent, on doit chercher dans la forêt $l^2(F)$ et on choisi le nœud \textit{d} qui nous permet d'avoir un Rip égal à 0.
       \begin{figure}
         \begin{tikzpicture}[sibling distance=5em, every node/.style = {shape=rectangle, rounded corners, draw, align=center,
           top color=white, bottom color=blue!20}], left]
@@ -397,7 +399,7 @@
     }
 
     \only<3> {
-      on choisi entre le nœud choisi précédemment et un de ses successeurs directs blanc dans la foret actuelle; ici si on supprime le nœud \textit{d}, alors on obtiendra bien une valeur de rip égale a 0
+      On choisi entre le nœud choisi précédemment et un de ses successeurs directs blanc dans la forêt actuelle; ici si on supprime le nœud \textit{d}, alors on obtiendra bien une valeur de Rip égale à 0.
 
       \begin{figure}
         \centering
@@ -420,7 +422,7 @@
     }
 
     \only<4> {
-    arrivé a la foret initiale, on peux bien voir que si on supprime le nœud \textit{g}, alors on aura une valeur de rip égale a 0
+    Arrivé à la forêt initiale, on peut bien voir que si on supprime le nœud \textit{g}, alors on aura une valeur de Rip égale à 0.
 
     \begin{figure}[h]
         \centering
@@ -446,46 +448,48 @@
        \caption {F, Rip(F) = 0}
       \end{figure}
 
-      c'est pourquoi dans cette foret, le coup gagnant est de supprimer le noeud \textit{g} de la foret
+      C'est pourquoi dans cette forêt, le coup gagnant est de supprimer le noeud \textit{g} de la forêt.
     }
   \end{frame}
 
   \section{Apports du stage}
   \label{sec:apports_du_stage}
   
+  % Slide 11 : Explication des apports techniques du stage
   \begin{frame}
     \frametitle{Les apports techniques}
     
-    \begin{block}{nouveau langages et technique de programmation}  
+    \begin{block}{Nouveaux langages et technique de programmation}  
       \begin{itemize}
-        \item Le python
-        \item Une nouvelle approche de la programmation orienté objet
+        \item le python
+        \item une nouvelle approche de la programmation orientée objet
         \item une nouvelle approche de la programmation fonctionnelle
       \end{itemize}
     \end{block}
     \pause
-    \begin{block}{méthode de travail}
+    \begin{block}{Méthode de travail}
       \begin{itemize}
         \item partage hebdomadaire du travail
         \item recherches approfondies et mise en place d'un plan de travail
-        \item appréhension d'un travail a découvrir (jeu de Chomp revisité)
+        \item appréhension d'un travail à découvrir (jeu de Chomp revisité)
         \item méthode de recherche et mise en forme d'une conjecture
       \end{itemize}
     \end{block}
   \end{frame}
 
+  % Slide 12 : Explication des connaissances acquises sur le métier d'enseigant-chercheur
   \begin{frame}
-    \frametitle{Les apports sur le métier d'enseignant chercheur}
+    \frametitle{Les apports sur le métier d'enseignant-chercheur}
     \begin{block}{Les avantages}
       \begin{itemize}
         \item un métier en constante évolution
-        \item un apport en connaissance constant
-        \item la possibilité d'enseigner a un publique passionné
+        \item un apport en connaissances constant
+        \item la possibilité d'enseigner à un publique passionné
         \item une flexibilité sur les horaires
       \end{itemize}
     \end{block}
     \pause
-    \begin{block}{les a cotés du stage}
+    \begin{block}{Les à côtés du stage}
       \begin{itemize}
         \item la conférence de NORMASTIC
         \item une conférence sur les posset et la preuve de la conjecture de Dumont
@@ -495,20 +499,22 @@
     \end{block}
   \end{frame}
 
+  % Slide 13 : Explications des choix d'orientation choisi grâce au stage
   \begin{frame}
     \frametitle{Les choix pour l'orientation}
 
-    \begin{block}{filière}  
-      Grâce a ce stage et mon projet annuel portant sur la sécurité informatique, mon choix se porte sur la filière SSI. Cependant, l’idée de faire le double cursus SSI/ITA pour le premier semestre est très intéressante. 
+    \begin{block}{Filière}  
+      Grâce à ce stage et mon projet annuel portant sur la sécurité informatique, mon choix se porte sur la filière SSI. Cependant, l’idée de faire le double cursus SSI/ITA pour le premier semestre est très intéressante. 
 
-      La thèse en milieu professionnel (thèse Cifre) est toujours envisage si la possibilité s'offre a moi
+      La thèse en milieu professionnel (thèse Cifre) est toujours envisage si la possibilité s'offre à moi.
     \end{block}
     \pause
     \begin{block}{Le monde professionnel}  
-      malgré énormément d'avantages dans le milieu universitaire, il reste encore trop de désavantage sur le nombre de poste, \textit{l'obligation} de quitter la région et le manque de financement dus a la politique actuelle des universités
+      Malgré énormément d'avantages dans le milieu universitaire, il reste encore trop de désavantages sur le nombre de postes, \textit{l'obligation} de quitter la région et le manque de financement dû à la politique actuelle des universités.
     \end{block}
   \end{frame}
 
+  % Slide 14 : Fin de la présentation
   \begin{frame}
     \begin{figure}
       \centering

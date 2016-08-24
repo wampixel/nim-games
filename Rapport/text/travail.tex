@@ -1,31 +1,32 @@
-Suite a l’étude théorique des jeux de Nim et de leurs méthodes de résolutions, il a été temps de les implanter.
+Suite à l’étude théorique des jeux de Nim et de leurs méthodes de résolutions, il a été temps de les implanter.
 
-Dans ce but, j'ai décide d'apprendre une nouveau langage, le \textit{python}, qui est un langage fortement typé, interprété et est aussi orienté objet. 
+Dans ce but, j'ai décidé d'apprendre une nouveau langage, le \textit{python}, qui est un langage fortement typé, interprété et est aussi orienté objet. 
 
 Ce langage est de plus en plus présent dans le milieu professionnel et est très utilisé dans le milieu de la sécurité informatique. C'est pour ces raisons que j'ai pensé que ce stage était l'occasion de pouvoir apprendre ce nouveau langage.
 
-toutes les implantations effectué durant ce stage sont disponible sur GitHub \footnote{\url{https://github.com/wampixel/nim-games}} en téléchargement libre.
+Toutes les implantations effectuées durant ce stage sont disponibles sur GitHub \footnote{\url{https://github.com/wampixel/nim-games}} en téléchargement libre.
 \subsection{Jeu de Nim simple}
 \label{sub:Jeu de Nim simple}
 
-La première implantation effectué était principalement pour apprendre le python.
+La première implantation effectuée était principalement pour apprendre le python.
 
-En effet, le jeu de Nim simple était simple a programmer car il ne demande que très peut de mémoire et la méthode de résolution est basé sur l’opération XOR\footnote{ou exclusif} sur l'ensemble des entiers.
+En effet, le jeu de Nim simple était facile à programmer car il ne demande que très peu de mémoire et la méthode de résolution est basée sur l’opération XOR\footnote{ou exclusif} sur l'ensemble des entiers.
 
-Pour implanter ce jeu, nous avons eu besoin de deux fichiers, le premier \texttt{ia.py} qui permet de pouvoir calculer si il existe un coup gagnant et savoir quel est ce coup, et le second \texttt{nim.py} qui est une implantation du jeu de Nim complexe a plusieurs tas.
+Pour implanter ce jeu, nous avons eu besoin de deux fichiers : le premier \texttt{ia.py} permet de pouvoir calculer s'il existe un coup gagnant et de savoir quel est ce coup, et le second \texttt{nim.py} est une implantation du jeu de Nim complexe à plusieurs tas.
 
-Pour pouvoir implanter la methode de resolution, nous avons eu besoin de plusieurs fonction :
+Pour pouvoir implanter la méthode de résolution, nous avons eu besoin de plusieurs fonctions :
 \begin{itemize}
-  \item \texttt{getwinningStrat(l)} qui retourne le coup a jouer pour gagner si il existe
+  \item \texttt{getwinningStrat(l)} qui retourne le coup à jouer pour gagner s'il existe
   \item \texttt{numAdd(l)} qui retourne le nimber d'une situation de jeu 
 \end{itemize}
 
 L'algorithme pour avoir le coup gagnant d'une situation de jeu est la suivante :
+\clearpage
 \begin{algorithm}[hbt]
-  \caption{calcul le coup gagnant si il existe}
+  \caption{Calcul le coup gagnant s'il existe}
   \begin{algorithmic}
     \REQUIRE l une liste de tas représentant une situation de jeu
-    \ENSURE un tuple de la forme (t, n) avec t le tas ou jouer, n le nombre a enlever
+    \ENSURE un tuple de la forme (t, n) avec t le tas où jouer, n le nombre à enlever
     
     \STATE $s \leftarrow numAdd(l)$
     \IF{$s = 0$}
@@ -52,18 +53,18 @@ L'algorithme pour avoir le coup gagnant d'une situation de jeu est la suivante :
   \end{algorithmic}
 \end{algorithm}    
 
-Le but de cet algorithme est de simplement tester si on est dans une position gagnante au démarrage (numAdd(l) = 0). Si c'est le cas, comme présenté dans les généralités, on ne peux pas gagner, c'est pourquoi on joue un coup dont on est sur de l'existence (tas 0, 1 allumette).
+Le but de cet algorithme est de simplement tester si on est dans une position gagnante au démarrage (numAdd(l) = 0). Si c'est le cas, comme présenté dans les généralités, on ne peut pas gagner, c'est pourquoi on joue un coup dont on est sûr de l'existence (tas 0, 1 allumette).
 
-Si jamais on n'est pas dans une position gagnante, alors on est sur et certain qu'il existe un coup gagnant, c'est pourquoi on commence a calculer ce coup.
+Si jamais on n'est pas dans une position gagnante, alors on est sûr et certain qu'il existe un coup gagnant, c'est pourquoi on commence à calculer ce coup.
 
-On commence a tester si en enlevant chaque tas complétement et on regarde l'addition de Nim pour ce fils. Si jamais on a un résultat de 0 pour l'addition de Nim, alors on a trouve le coup gagnant et on le retourne. Sinon on va commencer a enlever les allumettes une a une dans chaque tas et on trouvera forcement le coup gagnant que l'on retournera.
+On commence à tester en enlevant chaque tas complètement et on regarde l'addition de Nim pour ce fils. Si jamais on a un résultat de 0 pour l'addition de Nim, alors on a trouvé le coup gagnant et on le retourne. Sinon, on va commencer à enlever les allumettes une à une dans chaque tas et on trouvera forcément le coup gagnant que l'on retournera.
 
 Cet algorithme est en temps linéaire sur la somme des éléments de la liste. Dans le pire des cas, on aura du calculer tous les coups possibles pour trouver le coup gagnant.
 
-Cet algorithme repose sur une addition spéciale appelé addition de Nim. Elle a été implanté dans la fonction \texttt{numAdd} et fonctionne de la façon suivante :
+Cet algorithme repose sur une addition spéciale appelée addition de Nim. Elle a été implantée dans la fonction \texttt{numAdd} et fonctionne de la façon suivante :
 
 \begin{algorithm}[hbt]
-  \caption{addition de Nim}
+  \caption{Addition de Nim}
   \begin{algorithmic}[h]
     \REQUIRE l une liste de tas représentant une situation de jeu
     \ENSURE le nimber de la situation l
@@ -76,44 +77,44 @@ Cet algorithme repose sur une addition spéciale appelé addition de Nim. Elle a
   \end{algorithmic}
 \end{algorithm}
 
-Cette fonction calcul simplement une addition sans retenue entre toutes les valeurs des tas en base 2. Ceci revient a faire un XOR (ou exclusif) entre ces valeurs. Cette fonction est en temps linéaire par rapport a la longueur de la liste l.
+Cette fonction calcule simplement une addition sans retenue entre toutes les valeurs des tas en base 2. Ceci revient à faire un XOR (ou exclusif) entre ces valeurs. Cette fonction est en temps linéaire par rapport à la longueur de la liste l.
 
-Ces algorithmes permettent d'implanter le théorème de Sprague-Grundy. Suite a ceci, nous avons cherché a utiliser ce théorème dans plusieurs autres jeux pour vérifier si nous pouvions a une méthode de calcul de nimber près toujours résoudre les jeux.
+Ces algorithmes permettent d'implanter le théorème de Sprague-Grundy. Suite à ceci, nous avons cherché à utiliser ce théorème dans plusieurs autres jeux pour vérifier si nous pouvions (à une méthode de calcul de nimber près) toujours résoudre les jeux.
 
 \subsection{Hackendot}
 \label{sub:Hackendot}
 
-Après avoir réussi a implanter le jeu de Nim et le théorème de Sprague-Grundy, nous avons attaqué le travail principal de ce stage. Nous avons donc étudié la méthode de résolution du jeu de Hackendot proposé par J. Ulehla.
+Après avoir réussi à implanter le jeu de Nim et le théorème de Sprague-Grundy, nous avons attaqué le travail principal de ce stage. Nous avons donc étudié la méthode de résolution du jeu de Hackendot proposé par J. Ulehla.
 
-Nous avons décidé d'utiliser ce coup ci la partie orienté objet du python. Ceci m'a permis de pouvoir apprendre a utiliser les objets en python.
+Nous avons décidé d'utiliser ce coup ci la partie orientée objet du python. Ceci m'a permis de pouvoir apprendre à utiliser les objets en python.
 
-La première classe que nous avons crée est la classe \texttt{forest}, celle ci permet de gérer les forets et nous ne détaillerons pas ici le contenu de classe car c'est une gestion de listes préfixe et suffixe simple avec les éléments démontrées dans les \hyperlink{GenArbres}{généralités}
+La première classe que nous avons créée est la classe \texttt{forest}, celle-ci permet de gérer les forêts. Nous ne détaillerons pas ici le contenu de classe car c'est une gestion de listes préfixe et suffixe simples avec les éléments démontrés dans les \hyperlink{GenArbres}{généralités}
 
-Nous avons ensuite crée une classe \texttt{iaUlehla} permettant de créer une intelligence artificielle simplifié pour calculer le coup gagnant dans ce jeux.
+Nous avons ensuite créé une classe \texttt{iaUlehla} permettant de créer une intelligence artificielle simplifiée pour calculer le coup gagnant dans ce jeux.
 
-Dans cette classe, il y a les methodes :
+Dans cette classe, il y a les méthodes :
 \begin{itemize}
-  \item \texttt{getWinningStrat(forest)} qui permet de connaitre le coup gagnant pour la foret \textit{forest}.
-  \item \texttt{lfunction(forest)} qui permet d'effectuer la fonction l sur la foret \textit{forest}.
-  \item \texttt{ripFunction(forest)} qui permet d'effectuer la fonction rip sur la foret \textit{forest}.
-  \item \texttt{getNodeForWin(forestL)} qui permet d'implanter le raisonnement de Ulehla pour trouver le coup gagnant a partir de la liste des dénoyautages successifs de la foret initiale \textit{forestL}.
+  \item \texttt{getWinningStrat(forest)} qui permet de connaitre le coup gagnant pour la forêt \textit{forest}.
+  \item \texttt{lfunction(forest)} qui permet d'effectuer la fonction l sur la forêt \textit{forest}.
+  \item \texttt{ripFunction(forest)} qui permet d'effectuer la fonction rip sur la forêt \textit{forest}.
+  \item \texttt{getNodeForWin(forestL)} qui permet d'implanter le raisonnement de Ulehla pour trouver le coup gagnant à partir de la liste des dénoyautages successifs de la forêt initiale \textit{forestL}.
 \end{itemize}
 
-Cette classe utilise aussi deux méthodes privées qui permettent de \textit{colorer} la foret.
+Cette classe utilise aussi deux méthodes privées qui permettent de \textit{colorer} la forêt.
 
-La première \texttt{colorNodeSucc(succList)} qui permet de colorer un nœud grâce a la liste de ses successeurs. Cette prend en entrée une liste de couleurs qui représente la liste des couleurs de ses successeurs et elle retourne \texttt{BLANC} si et seulement si toutes les couleurs de la liste sont a \texttt{NOIR}. Si jamais la couleur d'au moi ns un des successeurs est a \texttt{BLANC}, la méthode retourne \texttt{NOIR}.
+La première \texttt{colorNodeSucc(succList)} qui permet de colorer un nœud grâce à la liste de ses successeurs. Cette fonction prend en entrée une liste de couleurs qui représente la liste des couleurs de ses successeurs et elle retourne \texttt{BLANC} si et seulement si toutes les couleurs de la liste sont en \texttt{NOIR}. Si jamais la couleur d'au moins un des successeurs est en \texttt{BLANC}, la méthode retourne \texttt{NOIR}.
 
-La seconde méthode privée \texttt{colorNode(forest, node)} elle permet de colorer le noeud \texttt{node} dans la foret \texttt{forest}.Cette methode construit recursivement la liste des couleurs des successeurs du noeud \texttt{node} et utilise la methode \texttt{colorNodeSucc(succList)}.
+La seconde méthode privée \texttt{colorNode(forest, node)} permet de colorer le noeud \texttt{node} dans la forêt \texttt{forest}.Cette méthode construit récursivement la liste des couleurs des successeurs du noeud \texttt{node} et utilise la méthode \texttt{colorNodeSucc(succList)}.
 
-L'avantage de cette methode est de ne pas colorer entierement la foret, en effet, pour savoir si un noeud est blanc, nous devons etre sur que tous les fils du noeud que l'on veut colorer sont bien \texttt{NOIR}, cependant, pour qu'un noeud soit \texttt{NOIR}, il suffit de savoir qu'un fils est bien \texttt{BLANC}.
+L'avantage de cette méthode est de ne pas colorer entièrement la forêt, en effet, pour savoir si un noeud est blanc, nous devons être sûr que tous les fils du noeud que l'on veut colorer sont bien \texttt{NOIR}, cependant, pour qu'un noeud soit \texttt{NOIR}, il suffit de savoir qu'un fils est bien \texttt{BLANC}.
 
-Dans la suite, nous allons presenter les algorithmes permettant de savoir si un coup gagnant existe, puis nous presenterons ensuite les algorithmes des fonctions propre a la methode Ulehla (\texttt{ripFunction} et \texttt{lFunction})
-
+Dans la suite, nous allons présenter les algorithmes permettant de savoir si un coup gagnant existe, puis nous présenterons ensuite les algorithmes des fonctions propre à la méthode Ulehla (\texttt{ripFunction} et \texttt{lFunction})
+\clearpage
 \begin{algorithm}[hbt]
   \caption{Calcul si le coup gagnant existe}
   \begin{algorithmic}
-    \REQUIRE f une foret quelconque
-    \ENSURE le noeud a supprimer pour entrer dans une strategie gagnante si c'est possible, le premier noeud de la liste sinon
+    \REQUIRE f une forêt quelconque
+    \ENSURE le noeud à supprimer pour entrer dans une stratégie gagnante si c'est possible, le premier noeud de la liste sinon
     \STATE $forestL \leftarrow [f]$
     \WHILE{$f\ is\ not\ empty$}
       \STATE $f \leftarrow lfunction(f)$
@@ -136,12 +137,12 @@ Dans la suite, nous allons presenter les algorithmes permettant de savoir si un 
 \end{algorithm}
 
 Cet algorithme a besoin de la fonction \texttt{getNodeForWin(forestL)} qui implante l'algorithme suivant :
-
+\clearpage
 \begin{algorithm}[hbt]
-  \caption{calcul le coup gagnant dans la suite des forets dénoyautées}
+  \caption{Calcul le coup gagnant dans la suite des forêts dénoyautées}
   \begin{algorithmic}
-    \REQUIRE forestL la suite des forets dénoyautées
-    \ENSURE le noeud a supprimer pour entrer dans une strategie gagnante
+    \REQUIRE forestL la suite des forêts dénoyautées
+    \ENSURE le noeud à supprimer pour entrer dans une stratégie gagnante
     \STATE $f \leftarrow forestL[len(forestL) - 1]$
     \STATE $tmp \leftarrow f.getRoots()$
     \STATE $root \leftarrow []$
@@ -176,20 +177,19 @@ Cet algorithme a besoin de la fonction \texttt{getNodeForWin(forestL)} qui impla
     \ENDWHILE
   \end{algorithmic}
 \end{algorithm}
+Cet algorithme est linaire sur le nombre de fils des coups possibles. En effet, nous pouvons voir qu'au premier tour de boucle, nous devons trouver tous les fils des coups dit possibles (c'est-à-dire les racines blanches de la dernière forêt), puis nous devons parcourir cette liste de successeurs pour trouver le coup qui permet de donner une suite de forets avec un rip a 0.
 
-Cet algorithme est linaire sur le nombre de fils des coups possibles. En effet, nous pouvons voir que au premier tour de boucle, nous devons trouver tous les fils des coups dit possible (c'est a dire les racines blanches de la dernière foret), puis nous devons parcourir cette liste de successeurs pour trouver le coup qui permet de donner une suite de forets avec un rip a 0.
+Ceci entraine que l'algorithme pour savoir si un coup gagnant existe est quadratique au pire des cas car on doit parcourir la liste complètement une fois pour trouver quelle est la dernière forêt avec un rip égal à 1, puis nous devons parcourir tous les fils possibles pour chaque coup gagnant possibles pour trouver le coup gagnant. Si jamais ce coup gagnant n'existe pas, cet algorithme est linéaire sur la longueur de la liste des forêts dénoyautées.
 
-Ceci entraine que l'algorithme pour savoir si un coup gagnant existe est quadratique au pire des cas car on doit parcourir la liste complétement une fois pour trouver quelle est la dernière foret avec un rip égal a 1, puis nous devons parcourir tous les fils possibles pour chaque coup gagnant possibles pour trouver le coup gagnant. Si jamais ce coup gagnant n'existe pas, cet algorithme est linéaire sur la longueur de la liste des forets dénoyautées.
-
-les fonctions précédentes permettent a partir du nimber d'un position de savoir ou est le coup gagnant. Ce nimber est attribué a une situation grâce a la fonction \texttt{rip} et la fonction \texttt{l} présenté dans l'article de Ulehla.
+Les fonctions précédentes permettent, à partir du nimber d'un position, de savoir où est le coup gagnant. Ce nimber est attribué à une situation grâce à la fonction \texttt{rip} et la fonction \texttt{l} présentée dans l'article de Ulehla.
 
 L'algorithme de ces fonctions sont les suivantes :
 \clearpage
 \begin{algorithm}[hbt]
   \caption{fonction rip}
     \begin{algorithmic}
-    \REQUIRE f une foret
-    \ENSURE 1 si si un nombre de racines blanches impair, 0 sinon
+    \REQUIRE f une forêt
+    \ENSURE 1 si un nombre de racines blanches impair, 0 sinon
     \STATE $nbRW \leftarrow 0$
     \FORALL{i in f.getPrefixList()}
       \IF {$i\ est\ une\ racine\ et\ colorNode(f, i) = BLANC$}
@@ -200,12 +200,12 @@ L'algorithme de ces fonctions sont les suivantes :
   \end{algorithmic}
 \end{algorithm}    
 
-Cet algorithme est linéaire sur le nombre de nœud de la foret. En effet, pour trouver le nombre de racines blanches, il faut parcourir la foret complète et trouver tous les nœuds sans prédécesseurs(les racines) et trouver la couleur du nœud.
+Cet algorithme est linéaire sur le nombre de nœud de la forêt. En effet, pour trouver le nombre de racines blanches, il faut parcourir la forêt complète et trouver tous les nœuds sans prédécesseurs(les racines) et trouver la couleur du nœud.
 
 \begin{algorithm}[hbt]
   \caption{fonction l}
   \begin{algorithmic}
-    \REQUIRE f une foret
+    \REQUIRE f une forêt
     \ENSURE f dénoyauté
     \STATE $whiteNode \leftarrow []$
     \FORALL{i in f.getPrefixList()}
@@ -219,34 +219,34 @@ Cet algorithme est linéaire sur le nombre de nœud de la foret. En effet, pour 
   \end{algorithmic}
 \end{algorithm}
 
-Cet algorithme est linéaire sur le nombre de nœud de la foret. En effet, nous devons parcourir toute la foret pour trouver les nœuds blancs et les supprimer c'est immédiat(nous gérons les forets avec des listes).
+Cet algorithme est linéaire sur le nombre de nœud de la forêt. En effet, nous devons parcourir toute la forêt pour trouver les nœuds blancs et les supprimer, c'est immédiat(nous gérons les forêts avec des listes).
 
-Une fois ce travail terminé et mes encadrant étant content de mon travail, madame Selmi m'a proposé une recherche nouvelle, le jeu de Chomp revisité. Cette recherche est un travail non effectué, nous avons donc dus chercher comment le résoudre et nous avons cherché a appliquer le théorème de Sprague-Grundy.
+Une fois ce travail terminé, et mes encadrants étant content de mon travail, Madame Selmi m'a proposé une recherche nouvelle, le jeu de Chomp revisité. Cette recherche est un travail non effectué, nous avons donc dû chercher comment le résoudre et nous avons cherché à appliquer le théorème de Sprague-Grundy.
 
 \subsection{Jeu de Chomp}
 \label{sub:Jeu de Chomp}
 
-Avant tout, ce jeu n'existait pas a notre connaissance, c'est pourquoi nous avons dus chercher comment faire pour pouvoir appliquer le théorème de Sprague-Grundy. Nous avons conjecturé plusieurs résultats et prouvé les plus simples. Cependant, nous n'avons a ce jour toujours pas trouvé comment faire pour trouver le coup gagnant et gagner a tous les coup.
+Avant tout, ce jeu n'existait pas à notre connaissance, c'est pourquoi nous avons dû chercher comment faire pour pouvoir appliquer le théorème de Sprague-Grundy. Nous avons conjecturé plusieurs résultats et prouvé les plus simples. Cependant, nous n'avons, à ce jour, toujours pas trouvé comment faire pour trouver le coup gagnant et gagner à tous les coup.
 
-Nous avons quand même implante le jeu et la solution que nous avions trouvé. 
+Nous avons quand même implanté le jeu et la solution que nous avions trouvée. 
 
 Cette implantation est faite en deux fichiers :
 \begin{itemize}
   \item \texttt{chomp.py} qui est le jeu en lui même
-  \item \texttt{resolver.py} qui est l'implantation de la methode de résolution conjecturé.
+  \item \texttt{resolver.py} qui est l'implantation de la méthode de résolution conjecturé.
 \end{itemize}
 
-Dans ce jeu, nous jouons, comme le chomp standard, sur une tablette. Nous choisissons un carré et nous supprimons soit la ligne soit la colonne. 
+Dans ce jeu, nous jouons, comme le Chomp standard, sur une tablette. Nous choisissons un carré et nous supprimons soit la ligne, soit la colonne. 
 
-La méthode conjecturée était que lorsque nous avions un nombre de colonnes ou de lignes impair, nous avions un nimber a 1 et un nimber a 0 sinon.
+La méthode conjecturée était que, lorsque nous avions un nombre de colonnes ou de lignes impair, nous avions un nimber à 1 et un nimber à 0 sinon.
 
-Cependant, nous nous sommes rendus compte que dans certains cas faciles, la méthode de résolution ne prenais pas en compte les composantes connexes identiques.
+Cependant, nous nous sommes rendus compte que dans certains cas faciles, la méthode de résolution ne prenait pas en compte les composantes connexes identiques.
 
-Nous avons donc cherché a redéfinir notre fonction pour attribuer le nimber et nous avons conjecturé les éléments suivants:
+Nous avons donc cherché à redéfinir notre fonction pour attribuer le nimber et nous avons conjecturé les éléments suivants :
 \begin{itemize}
-  \item le nimber d'une tablette 1xm ou mx1 est egal a m (prouvé)
-  \item le nimber d'une tablette 2mx2n est egal a 0 (prouvé)
-  \item le nimber d'une tablette nxm avec n ou m impair est egal a 1 si m+n est impair et 2 sinon (non prouvé)
+  \item le nimber d'une tablette 1xm ou mx1 est égal à m (prouvé)
+  \item le nimber d'une tablette 2mx2n est égal à 0 (prouvé)
+  \item le nimber d'une tablette nxm avec n ou m impair est égal à 1 si m+n est impair et 2 sinon (non prouvé)
 \end{itemize}
 
-La preuve de ce dernier point n'est pas évidente comme les deux premiers et nous avons travaillé avec madame Selmi sans arriver a voir comment nous y prendre.
+La preuve de ce dernier point n'est pas évidente comme les deux premiers et nous avons travaillé avec Madame Selmi sans arriver à voir comment nous y prendre.
